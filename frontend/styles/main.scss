@@ -1,5 +1,44 @@
+body {
+    background-color: #f6f5f5;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+//Navbar
+
 .navbar-brand{
     img {
         max-height: 50px;
     }
 }
+
+.navbar-light {
+    color: #858585;
+    .navbar-nav {
+        .nav-link {
+            color: #00A241;
+
+            &.active {
+                font-weight: bold;
+                color: #00A241 !important;
+
+            }
+        }
+    }
+}
+
+.btn-login {
+    background-color: #00A241;
+    color: #ffff;
+
+    &:hover {
+        background-color: #036f2e;
+        color: #ffff;
+    }
+}
+
+//Header
+
+ header {
+     padding: 180px 0 160px;
+ }
