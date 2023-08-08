@@ -1,23 +1,22 @@
 body {
-    background-color: #f6f5f5;
+    background-color: #243A36;
     font-family: 'Poppins', sans-serif;
     color: #ffff;
 }
 
 //Navbar
-
 .navbar-brand{
     img {
         max-height: 50px;
     }
 }
 
-.navbar-light {
-    color: #858585;
+.navbar-dark {
+    color: #243A36;
     .navbar-nav {
         .nav-link {
             color: #ffff;
-
+            
             &.active {
                 font-weight: bold;
                 color: #ffff !important;
@@ -28,11 +27,11 @@ body {
 }
 
 .btn-login {
-    background-color: #32514B;
+    background-color: #036f2e;
     color: #ffff;
 
     &:hover {
-        background-color: #036f2e;
+        background-color: #7B9242;
         color: #ffff;
     }
 }
@@ -40,7 +39,7 @@ body {
 //Header
 
  header {
-     padding: 220px 0 200px;
+     padding: 260px 0 240px;
      margin-top: -80px;
      background-image: url('../images/Header.jpg');
      background-size: cover;
@@ -62,12 +61,73 @@ body {
      }
 
      .btn-get-started {
-        background-color: #7B9242;
+        background-color: #c45824;
         color: #fff;
 
         &:hover {
-            background-color: #036f2e;
+            background-color: #7B9242;
             color: #fff;
         }
      }
  }
+
+.section-wisata {
+    min-height: 500px;
+    background-color: #243A36;
+    margin-top: -50px;
+    margin-bottom: -250px;
+
+    .section-wisata-heading {
+
+        margin-top: 80px;
+        
+        h2,
+        p {
+            color: #fff;
+        }
+
+        h2 {
+            font-family: 'Poppins', serif;
+            color: #ffff; 
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+        
+    }
+}
+
+.section-wisata-content {
+    .section-wisata-travel {
+        .card-travel {
+            min-height: 380px;
+            background-color: #ddd;
+            color: #fff;
+            padding: 30px;
+            background-size: cover;
+            margin-bottom: 20px;
+            border-radius: 10px;
+
+        }
+
+        .travel-location {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .travel-button {
+            .btn-travel-details {
+                background-color: #c45824;
+                color: #fff;
+
+
+                &:hover {
+                    background-color: #7B9242;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
