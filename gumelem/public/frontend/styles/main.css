@@ -1,0 +1,615 @@
+body {
+  background-color: #243A36;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.navbar {
+  transition: all 0.4s ease;
+}
+
+.navbar.trans {
+  background: transparent !important;
+}
+
+.navbar-inverse {
+  background-color: #243A36;
+}
+
+.navbar.transparent {
+  background-color: transparent;
+}
+
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar-nav .nav-link {
+  color: white;
+}
+.navbar-nav .nav-link.active {
+  font-weight: bold;
+  color: white !important;
+}
+
+.btn-login {
+  background-color: #036f2e;
+  color: white;
+}
+.btn-login:hover {
+  background-color: #7B9242;
+  color: white;
+}
+
+header {
+  padding: 300px 0 300px;
+  z-index: -1;
+  background-image: url("../images/Header.jpg");
+  background-size: cover;
+}
+header h1, header p {
+  color: #fff;
+}
+header h1 {
+  font-family: "Poppins", serif;
+  font-weight: bold;
+  font-size: 60px;
+}
+header p {
+  font-size: 22px;
+}
+header .btn-get-started {
+  background-color: #c45824;
+  color: #fff;
+}
+header .btn-get-started:hover {
+  background-color: #7B9242;
+  color: #fff;
+}
+
+.section-wisata {
+  min-height: 500px;
+  background-color: #243A36;
+  margin-bottom: -400px;
+}
+.section-wisata .section-wisata-heading {
+  margin-top: 50px;
+  margin-bottom: 500px;
+}
+.section-wisata .section-wisata-heading h2,
+.section-wisata .section-wisata-heading p {
+  color: #fff;
+}
+.section-wisata .section-wisata-heading h2 {
+  font-family: "Poppins", serif;
+  color: white;
+  font-size: 40px;
+}
+.section-wisata .section-wisata-heading p {
+  font-size: 18px;
+}
+
+.section-wisata-content .section-wisata-travel .card-travel {
+  min-height: 450px;
+  background-color: #ddd;
+  color: #fff;
+  padding: 30px;
+  background-size: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.section-wisata-content .section-wisata-travel .travel-location {
+  font-size: 18px;
+  color: #fff;
+}
+.section-wisata-content .section-wisata-travel .travel-button .btn-travel-details {
+  background-color: #c45824;
+  color: #fff;
+}
+.section-wisata-content .section-wisata-travel .travel-button .btn-travel-details:hover {
+  background-color: #7B9242;
+  color: #fff;
+}
+
+.section-morefromus-heading {
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
+  padding-top: 100px;
+  min-height: 700px;
+}
+.section-morefromus-heading h2 {
+  font-family: "Poppins", serif;
+  font-size: 40px;
+  text-align: center;
+}
+.section-morefromus-heading p {
+  font-size: 18px;
+}
+
+.section-merchandise {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin: 10px;
+  text-align: center;
+}
+.section-merchandise h3 {
+  font-family: "Poppins", serif;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+.section-merchandise p {
+  font-size: 18px;
+}
+.section-merchandise .card-merchandise {
+  background-color: transparent;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 400px;
+  max-width: 400px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.section-merchandise-content .section-merchandise-item .card-merchandise-item {
+  min-height: 300px;
+  background-color: #ddd;
+  color: #fff;
+  background-size: cover;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.section-merchandise-content .section-merchandise-item .item-location {
+  font-size: 18px;
+  color: #fff;
+  margin: 20px;
+}
+.section-merchandise-content .section-merchandise-item .item-button {
+  margin: 20px;
+}
+.section-merchandise-content .section-merchandise-item .item-button .btn-merchandise-details {
+  background-color: #c45824;
+  color: #fff;
+}
+.section-merchandise-content .section-merchandise-item .item-button .btn-merchandise-details:hover {
+  background-color: #7B9242;
+  color: #fff;
+}
+
+.section-morefromus-content {
+  margin-top: -400px;
+  margin-bottom: 50px;
+  margin-inline-start: 50px;
+  margin-inline-end: 50px;
+}
+.section-morefromus-content .card-morefromus {
+  background-color: transparent;
+  border: transparent;
+  height: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+}
+.section-morefromus-content .card-morefromus .morefromus-content {
+  min-height: 50px;
+}
+.section-morefromus-content .card-morefromus .mb-4 {
+  font-size: 18px;
+  color: #fff;
+}
+.section-morefromus-content .card-morefromus .icon1 {
+  font-size: 14px;
+  color: #fff;
+}
+
+footer {
+  position: absolute;
+  display: block;
+  width: 100%;
+}
+footer .section-footer {
+  margin-bottom: 10px;
+}
+
+.section-details-header {
+  min-height: 310px;
+}
+
+.section-details-content {
+  margin-top: -210px;
+  min-height: 100vh;
+}
+.section-details-content .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.section-details-content .breadcrumb-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.section-details-content .breadcrumb-item.active {
+  font-weight: bold;
+  color: #fff;
+}
+.section-details-content .card-details {
+  padding: 30px;
+  border-radius: 10px;
+}
+.section-details-content .card-details h1 {
+  font-size: 36px;
+}
+.section-details-content .card-details h2 {
+  font-size: 20px;
+  font-style: normal;
+}
+.section-details-content .card-details h3 {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.section-details-content .card-details h4 {
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.section-details-content .card-details p {
+  font-size: 18px;
+  color: black;
+}
+.section-details-content .features {
+  margin-top: 20px;
+}
+.section-details-content .features h3 {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 0px;
+}
+.section-details-content .features h2 {
+  font-size: 12px;
+  color: black;
+}
+.section-details-content .features p {
+  margin-bottom: 0px;
+}
+.section-details-content .description {
+  margin-left: 10px;
+  width: auto;
+  overflow: hidden;
+  float: left;
+}
+.section-details-content .featured-image {
+  width: 45px;
+  height: 45px;
+  float: left;
+}
+
+.gallery .xzoom-container {
+  display: block;
+}
+.gallery .xzoom-container .xzoom {
+  width: 100%;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.gallery .xzoom-container .xactive {
+  border: 4px solid #243A36;
+}
+
+.wrapper {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  border-radius: 8px;
+}
+
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.wrapper span.num {
+  font-size: 16px;
+  border-right: 2px;
+  pointer-events: none;
+}
+
+.input-group-append {
+  cursor: pointer;
+}
+
+.join-container {
+  margin-top: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-join-now {
+  background-color: #7B9242;
+  color: #fff;
+  border-radius: 8px;
+}
+.btn-join-now:hover {
+  background-color: #036f2e;
+  color: #fff;
+}
+
+.section-order-header {
+  min-height: 310px;
+}
+
+.section-order-content {
+  margin-top: -210px;
+  min-height: 100vh;
+}
+.section-order-content .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.section-order-content .breadcrumb-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.section-order-content .breadcrumb-item.active {
+  font-weight: bold;
+  color: #fff;
+}
+.section-order-content .card-details {
+  padding: 30px;
+  border-radius: 10px;
+}
+.section-order-content .card-details h1 {
+  font-size: 36px;
+}
+.section-order-content .card-details h2 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+}
+.section-order-content .card-details h3 {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.section-order-content .card-details h4 {
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.section-order-content .card-details p {
+  font-size: 18px;
+  color: black;
+}
+.section-order-content .features {
+  margin-top: 20px;
+}
+.section-order-content .features h3 {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 0px;
+}
+.section-order-content .features h2 {
+  font-size: 12px;
+  color: black;
+}
+.section-order-content .features p {
+  margin-bottom: 0px;
+}
+.section-order-content .description {
+  margin-left: 10px;
+  width: auto;
+  overflow: hidden;
+  float: left;
+}
+.section-order-content .featured-image {
+  width: 45px;
+  height: 45px;
+  float: left;
+}
+
+.gallery .xzoom-container {
+  display: block;
+}
+.gallery .xzoom-container .xzoom {
+  width: 100%;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.gallery .xzoom-container .xactive {
+  border: 4px solid #243A36;
+}
+
+.wrapper {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  border-radius: 8px;
+}
+
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.wrapper span.num {
+  font-size: 16px;
+  border-right: 2px;
+  pointer-events: none;
+}
+
+.input-group-append {
+  cursor: pointer;
+}
+
+.join-container {
+  margin-top: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-join-now {
+  background-color: #7B9242;
+  color: #fff;
+  border-radius: 8px;
+}
+.btn-join-now:hover {
+  background-color: #036f2e;
+  color: #fff;
+}
+
+.section-order-header {
+  min-height: 310px;
+}
+
+.section-order-content {
+  margin-top: -210px;
+  min-height: 100vh;
+}
+.section-order-content .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.section-order-content .breadcrumb-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.section-order-content .breadcrumb-item.active {
+  font-weight: bold;
+  color: #fff;
+}
+.section-order-content .card-details {
+  padding: 30px;
+  border-radius: 10px;
+}
+.section-order-content .card-details h1 {
+  font-size: 36px;
+}
+.section-order-content .card-details h2 {
+  font-size: 20px;
+  font-style: normal;
+}
+.section-order-content .card-details h3 {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.section-order-content .card-details h4 {
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.section-order-content .card-details p {
+  font-size: 18px;
+  color: black;
+}
+.section-order-content .features {
+  margin-top: 20px;
+}
+.section-order-content .features h3 {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 0px;
+}
+.section-order-content .features h2 {
+  font-size: 12px;
+  color: black;
+}
+.section-order-content .features p {
+  margin-bottom: 0px;
+}
+.section-order-content .description {
+  margin-left: 10px;
+  width: auto;
+  overflow: hidden;
+  float: left;
+}
+.section-order-content .featured-image {
+  width: 45px;
+  height: 45px;
+  float: left;
+}
+
+.gallery .xzoom-container {
+  display: block;
+}
+.gallery .xzoom-container .xzoom {
+  width: 100%;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+.gallery .xzoom-container .xactive {
+  border: 4px solid #243A36;
+}
+
+.wrapper {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  border-radius: 8px;
+}
+
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.wrapper span.num {
+  font-size: 16px;
+  border-right: 2px;
+  pointer-events: none;
+}
+
+.input-group-append {
+  cursor: pointer;
+}
+
+.join-container {
+  margin-top: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-join-now {
+  background-color: #7B9242;
+  color: #fff;
+  border-radius: 8px;
+}
+.btn-join-now:hover {
+  background-color: #036f2e;
+  color: #fff;
+}/*# sourceMappingURL=main.css.map */

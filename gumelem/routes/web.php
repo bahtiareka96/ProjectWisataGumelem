@@ -1,0 +1,34 @@
+<?php
+
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\DetailController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', [HomeController::class, 'index']) -> name('home');
+
+Route::get('/detail', [DetailController::class, 'index']) -> name('detail');
+
+Route::get('/order', [OrderController::class, 'index']) -> name('order');
+
+Route::get('/about', [AboutController::class, 'index']) -> name('about');
+
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->group(function() {
+        Route::get('/', [DashboardController::class, 'index'])
+            ->name('dashboard');
+    });

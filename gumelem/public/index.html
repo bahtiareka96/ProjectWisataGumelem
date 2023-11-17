@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./frontend/styles/main.css">   
+    
+</head>
+<body>
+      <!-- Navbar -->
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-expand-sm navbar-dark fixed-top px-lg-5">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img src="frontend/images/Logo.png" alt="logo">
+              </a>
+              
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <!--Menu-->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item mx-md-2">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item mx-md-2">
+                    <a class="nav-link" href="#">Objek Wisata</a>
+                  </li>
+                  <li class="nav-item mx-md-2">
+                    <a class="nav-link" href="#">Merchandise</a>
+                  </li>
+                  <li class="nav-item mx-md-2">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                </ul>
+                <!--Mobile Button-->
+                  <form class="form-inline d-sm-block d-md-none">
+                    <button class="btn btn-login my-2 my-sm-0">
+                      Masuk
+                    </button>
+                  </form>
+
+                  <!--Dekstop Button-->
+                  <form class="form-inline mx-my-2 my-lg-0 d-none d-md-block">
+                    <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4">
+                      Masuk
+                    </button>
+                  </form>
+              </div>
+            </div>
+          </nav>
+    </div>
+    <!-- Header -->
+    <header class="text-center">
+      <h1>Wonderful
+         <br>
+         Gumelem
+      </h1>
+      <a href="#" class="btn btn-get-started px-4 mt-4">
+        Get Started
+      </a>
+    </header>
+    <!-- Main -->
+    <main>
+      <section class="section-wisata" id="wisata">
+         <div class="container">
+          <div class="row">
+            <div class="col text-center section-wisata-heading">
+              <h2>Objek Wisata</h2>
+              <p>Explore The Destinations</p>
+            </div>
+          </div>
+         </div>
+      </section>
+      <section class="section-wisata-content" id="wisataContent">
+        <div class="container">
+          <div class="section-wisata-travel row justify-content-center">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-travel text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="travel-location">Pemandian Banyu Anget Pingit</div>
+                <div class="travel-button mt-auto">
+                  <a href="#" class="btn btn-travel-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-travel text-center d-flex flex-column"
+              style="background-image: url('frontend/images/grave.jpg');">
+                <div class="travel-location">Makam Pademangan</div>
+                <div class="travel-button mt-auto">
+                  <a href="#" class="btn btn-travel-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-travel text-center d-flex flex-column"
+              style="background-image: url('frontend/images/grave.jpg');">
+                <div class="travel-location">Makam Ki Ageng Giring</div>
+                <div class="travel-button mt-auto">
+                  <a href="#" class="btn btn-travel-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-travel text-center d-flex flex-column"
+              style="background-image: url('frontend/images/grave.jpg');">
+                <div class="travel-location">Makam Sunan Geseng</div>
+                <div class="travel-button mt-auto">
+                  <a href="#" class="btn btn-travel-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-merchandise" id="merchandise">
+        <div class="contrainer">
+          <div class="section-merchandise row justify-content-center">
+            <div class="col-md-4">
+             <h3>Merchandise</h3>
+             <p>Find Our Authentics Merchandise
+              <br>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+             </p>
+             <div class="merchandise-button mt-auto">
+            </div>
+            </div>
+            <!-- <div class="col-md-4">
+              <div class="card-merchandise d-flex flex-column align-items-center"
+              style="background-image: url('frontend/images/merch.png');">
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </section>
+      <section class="section-merchandise-content" id="merchandiseContent">
+        <div class="container">
+          <div class="section-merchandise-item row justify-content-center">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif A</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif B</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif C</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif D</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif A</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif A</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif A</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="card-merchandise-item text-center d-flex flex-column"
+              style="background-image: url('frontend/images/hotspring.jpg');">
+                <div class="item-location">Motif A</div>
+                <div class="item-button mt-auto">
+                  <a href="#" class="btn btn-merchandise-details px-4">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-morefromus-heading" id="morefromusHeading">
+        <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <h2>More Form Us</h2>
+              <p>Benefits When Using Our Service </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-morefromus-content" id="morefromusContent">
+        <div class="contrainer">
+          <div class="section-popular-travel row justify-content-center">
+            <div class="col-sm-5 col-md-4 mb-3">
+              <div class="card card-morefromus text-center">
+                <div class="morefromus-content">
+                  <img src="./frontend/images/icon1.png" 
+                  alt="tour-guide" 
+                  class="mb-4"/>
+                  <h3 class="mb-4">Tour Guide</h3>
+                  <p class="icon1">
+                    Helping To Decide On Destinations.
+                    <br>
+                    Background Story 
+                    <br> 
+                    Of Your Destination.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5 col-md-4 mb-3">
+              <div class="card card-morefromus text-center">
+                <div class="morefromus-content">
+                  <img src="./frontend/images/icon2.png" 
+                  alt="tour-guide"
+                  class="mb-4"/>
+                  <h3 class="mb-4">Culinary</h3>
+                  <p class="icon1">
+                    Helping To Decide On Destinations.
+                    <br>
+                    Background Story
+                    <br> 
+                    Of Your Destination.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5 col-md-4 mb-3">
+              <div class="card card-morefromus text-center">
+                <div class="morefromus-content">
+                  <img src="./frontend/images/icon3.png" 
+                  alt="tour-guide" 
+                  class="mb-4"/>
+                  <h3 class="mb-4">Homestay</h3>
+                  <p class="icon1">
+                    Helping To Decide On Destinations.
+                    <br>
+                    Background Story
+                    <br>
+                     Of Your Destination.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="text-center">
+      <!-- Section: Social media -->
+      <section class="section-footer" id="footerIcon">
+        <div class="container pt-4">
+          <div class="btn-footer">
+        <!-- Facebook -->
+        <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button">
+          <i class="bi bi-facebook"></i>
+        </a>
+        <!-- Twitter -->
+        <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button">
+          <i class="bi bi-twitter"></i>
+        </a>
+  
+        <!-- Google -->
+        <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button">
+          <i class="bi bi-google"></i>
+        </a>
+  
+        <!-- Instagram -->
+        <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button">
+          <i class="bi bi-instagram"></i>
+        </a>
+        </div>
+      </div>
+      </section>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <a class="text-white" href="https://mdbootstrap.com/">WisatGumelem.com</a>
+        </div>
+      <!-- Copyright -->
+    </footer>
+    <script src="frontend/libraries/jquery/jquery-3.7.0.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="frontend/libraries/retina/retina.min.js"></script>
+    <script>
+      $(window).scroll(function() {
+        var offset = $(window).scrollTop();
+        console.log(offset);
+        $('.navbar').toggleClass('trans', offset < 50);
+      });
+    </script>
+</body>
+</html>
