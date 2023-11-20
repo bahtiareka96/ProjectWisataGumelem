@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Detail Merchandise
+    Merchandise
 @endsection
 
 @section('content')
@@ -83,33 +83,7 @@
       </div>
       <div class="col-sm">
         <div class="card card-details text-center card-right">
-          <h2>Pengiriman dan pembayaran</h2>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Email</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>abc@gmail.com</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Alamat</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Jl.Sarwoendah 2, Purwokerto Kidul, Purwokerto Selatan, Kab. Banyumas</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Pengiriman</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Reguler</h4>
-            </div>
-          </div>
-          <hr class="hr" />
-          <h2>Ringkasan Pembelian</h2>
+          <h2>Detail Produk</h2>
           <div class="row pb-2">
             <div class="col-sm">
               <h3>Jumlah</h3>
@@ -126,21 +100,6 @@
             <div class="col-sm">
               <h3>Harga</h3>
             </div>
-            <div class="col-sm-lg">
-              <h4>Rp.5000</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Ongkos Kirim</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Rp.0</h4>
-            </div>
-          </div>
-          <hr class="hr" />
-          <h2>Total Biaya</h2>
-          <div class="row pb-2">
             <div class="col-sm-lg">
               <h4>Rp.5000</h4>
             </div>

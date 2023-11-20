@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Wisata Gumelem
+    Wonderful Gumelem
 @endsection
 
 @section('content')
@@ -100,94 +100,72 @@
         <section class="section-merchandise-content" id="merchandiseContent">
           <div class="container">
             <div class="section-merchandise-item row justify-content-center">
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif A</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
+              <div class="container text-center my-3">
+                <div class="row mx-auto my-auto justify-content-center">
+                    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active">
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card-merchandise-item text-center d-flex flex-column"
+                                        style="background-image: url('frontend/images/hotspring.jpg');">
+                                        <div class="item-location">Motif A</div>
+                                            <div class="item-button mt-auto">
+                                                <a href="#" class="btn btn-merchandise-details px-4">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card-merchandise-item text-center d-flex flex-column"
+                                        style="background-image: url('frontend/images/hotspring.jpg');">
+                                        <div class="item-location">Motif B</div>
+                                            <div class="item-button mt-auto">
+                                                <a href="#" class="btn btn-merchandise-details px-4">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card-merchandise-item text-center d-flex flex-column"
+                                        style="background-image: url('frontend/images/hotspring.jpg');">
+                                        <div class="item-location">Motif C</div>
+                                            <div class="item-button mt-auto">
+                                                <a href="#" class="btn btn-merchandise-details px-4">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="col-sm-6 col-md-4 col-lg-3">
+                                    <div class="card-merchandise-item text-center d-flex flex-column"
+                                        style="background-image: url('frontend/images/hotspring.jpg');">
+                                        <div class="item-location">Motif D</div>
+                                            <div class="item-button mt-auto">
+                                                <a href="#" class="btn btn-merchandise-details px-4">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev bg-dark w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next bg-dark w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </a>
+                    </div>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif B</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif C</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif D</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif A</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif A</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif A</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-merchandise-item text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="item-location">Motif A</div>
-                  <div class="item-button mt-auto">
-                    <a href="#" class="btn btn-merchandise-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
+            </div>
             </div>
           </div>
         </section>

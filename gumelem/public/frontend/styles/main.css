@@ -151,12 +151,44 @@ header .btn-get-started:hover {
   display: flex;
 }
 
+@media (max-width: 767px) {
+  .section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item > div {
+    display: none;
+  }
+  .section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item > div:first-child {
+    display: block;
+  }
+}
+.section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item.active {
+  display: flex;
+}
+.section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-next {
+  display: flex;
+}
+.section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-prev {
+  display: flex;
+}
+.section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-end {
+  transform: translateX(0);
+}
+.section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-start {
+  transform: translateX(0);
+}
+@media (min-width: 768px) {
+  .section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-next {
+    transform: translateX(25%);
+  }
+  .section-merchandise-content .section-merchandise-item .carousel-inner .carousel-item-prev {
+    transform: translateX(-25%);
+  }
+}
 .section-merchandise-content .section-merchandise-item .card-merchandise-item {
   min-height: 300px;
   background-color: #ddd;
   color: #fff;
   background-size: cover;
-  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
   border-radius: 10px;
 }
 .section-merchandise-content .section-merchandise-item .item-location {
@@ -294,7 +326,8 @@ footer .section-footer {
   display: block;
 }
 .gallery .xzoom-container .xzoom {
-  width: 100%;
+  width: 400px;
+  height: 400px;
   box-shadow: none;
   margin-bottom: 10px;
 }
@@ -429,12 +462,136 @@ footer .section-footer {
   display: block;
 }
 .gallery .xzoom-container .xzoom {
-  width: 100%;
+  width: 400px;
+  height: 400px;
   box-shadow: none;
   margin-bottom: 10px;
 }
 .gallery .xzoom-container .xactive {
   border: 4px solid #243A36;
+}
+
+.wrapper {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  border-radius: 8px;
+}
+
+.wrapper span {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.wrapper span.num {
+  font-size: 16px;
+  border-right: 2px;
+  pointer-events: none;
+}
+
+.input-group-append {
+  cursor: pointer;
+}
+
+.join-container {
+  margin-top: 16px;
+  align-items: center;
+  text-align: center;
+}
+
+.btn-join-now {
+  background-color: #7B9242;
+  color: #fff;
+  border-radius: 8px;
+}
+.btn-join-now:hover {
+  background-color: #036f2e;
+  color: #fff;
+}
+
+.section-order-details-header {
+  min-height: 310px;
+}
+
+.section-order-details-content {
+  margin-top: -210px;
+  min-height: 100vh;
+}
+.section-order-details-content .breadcrumb {
+  background-color: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+}
+.section-order-details-content .breadcrumb-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.section-order-details-content .breadcrumb-item.active {
+  font-weight: bold;
+  color: #fff;
+}
+.section-order-details-content .card-payment-details {
+  padding: 30px;
+  border-radius: 10px;
+}
+.section-order-details-content .card-payment-details h1 {
+  font-size: 36px;
+}
+.section-order-details-content .card-payment-details h2 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+}
+.section-order-details-content .card-payment-details h3 {
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.section-order-details-content .card-payment-details h4 {
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.section-order-details-content .card-payment-details p {
+  font-size: 18px;
+  color: black;
+}
+.section-order-details-content .features {
+  margin-top: 20px;
+}
+.section-order-details-content .features h3 {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 0px;
+}
+.section-order-details-content .features h2 {
+  font-size: 12px;
+  color: black;
+}
+.section-order-details-content .features p {
+  margin-bottom: 0px;
+}
+.section-order-details-content .description {
+  margin-left: 10px;
+  width: auto;
+  overflow: hidden;
+  float: left;
+}
+.section-order-details-content .featured-image {
+  width: 45px;
+  height: 45px;
+  float: left;
 }
 
 .wrapper {
@@ -564,6 +721,7 @@ footer .section-footer {
 }
 .gallery .xzoom-container .xzoom {
   width: 100%;
+  height: 700px;
   box-shadow: none;
   margin-bottom: 10px;
 }
