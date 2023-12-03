@@ -22,9 +22,9 @@
 
             </div>
             <div id="layoutSidenav_content">
-                <main>
+
                     @yield('content')
-                </main>
+
 
                 @include('includes.admin.footer')
 

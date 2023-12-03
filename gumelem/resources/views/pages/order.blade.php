@@ -13,7 +13,7 @@
       <div class="col p-0 pl-3 pl-lg-0">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Merchandise</li>
           </ol>
         </nav>
@@ -22,92 +22,72 @@
     <div class="row">
       <div class="col-lg-8 pl-lg-0">
         <div class="card card-details">
-          <h1>Batik Gumelem Model A</h1>
-          <div class="gallery">
-            <div class="xzoom-container">
-              <img
-                class="xzoom"
-                id="xzoom-default"
-                src="frontend/images/Details-1.jpg"
-                xoriginal="frontend/images/Details-1.jpg"
-              />
-              <div class="xzoom-thumbs">
-                <a href="frontend/images/Details-1.jpg"
-                  ><img
-                    class="xzoom-gallery"
-                    width="128"
-                    src="frontend/images/Details-1.jpg"
-                    xpreview="frontend/images/Details-1.jpg"
-                /></a>
-                <a href="frontend/images/Details-1.jpg"
-                  ><img
-                    class="xzoom-gallery"
-                    width="128"
-                    src="frontend/images/Details-1.jpg"
-                    xpreview="frontend/images/Details-1.jpg"
-                /></a>
-                <a href="frontend/images/Details-1.jpg"
-                  ><img
-                    class="xzoom-gallery"
-                    width="128"
-                    src="frontend/images/Details-1.jpg"
-                    xpreview="frontend/images/Details-1.jpg"
-                /></a>
-                <a href="frontend/images/Details-1.jpg"
-                  ><img
-                    class="xzoom-gallery"
-                    width="128"
-                    src="frontend/images/Details-1.jpg"
-                    xpreview="frontend/images/Details-1.jpg"
-                /></a>
-                <a href="frontend/images/Details-1.jpg"
-                  ><img
-                    class="xzoom-gallery"
-                    width="128"
-                    src="frontend/images/Details-1.jpg"
-                    xpreview="frontend/images/Details-1.jpg"
-                /></a>
-              </div>
-            </div>
-            <h2>Tentang Produk</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <p>
-              Bali and a district of Klungkung Regency that includes the
-              neighbouring small island of Nusa Lembongan. The Badung
-              Strait separates the island and Bali.
-            </p>
-          </div>
+          <h1>{{ $item->title }}</h1>
+          @if ($item->merchandise_galleries->count())
+                <div class="gallery">
+                    <div class="xzoom-container-sm">
+                      <img
+                        class="xzoom mb-2"
+                        id="xzoom-default"
+                        src="{{ Storage::url($item->merchandise_galleries->first()->image) }}"
+                        xoriginal="{{ Storage::url($item->merchandise_galleries->first()->image) }}"
+                      />
+                      <div class="xzoom-thumbs">
+                        @foreach ($item->merchandise_galleries as $gallery)
+                            <a href="{{ Storage::url($gallery->image) }}"
+                                ><img
+                                class="xzoom-gallery"
+                                width="128"
+                                src="{{ Storage::url($gallery->image) }}"
+                                xpreview="{{ Storage::url($gallery->image) }}"/>
+                            </a>
+                        @endforeach
+                      </div>
+                    </div>
+                    <h2>Tentang Wisata</h2>
+                    <p>
+                        {!! $item->about !!}
+                    </p>
+                  </div>
+                @endif
         </div>
       </div>
       <div class="col-sm">
         <div class="card card-details text-center card-right">
           <h2>Detail Produk</h2>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Jumlah</h3>
-            </div>
-            <div class="col-sm-lg">
-              <div class="wrapper wrapper-1">
-                <span class="minus">-</span>
-                <span class="num">01</span>
-                <span class="plus">+</span>
-              </div>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Harga</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Rp.5000</h4>
-            </div>
-          </div>
           <div class="join-container">
-            <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2"
-              >Bayar
-            </a>
+            @auth
+               <form action="{{ route('ordermerch') }}" method="POST">
+                @csrf
+                <div class="row pb-2">
+                    <div class="col-sm">
+                      <h3>Jumlah</h3>
+                    </div>
+                    <div class="col-sm-lg">
+                      <div class="wrapper wrapper-1">
+                        <input class="num" onKeyDown="return false" min="1" max="{{ $item->quantity }}" onchange="handleQty(this.value)" type="number" value="1" name="quantity_order">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row pb-2">
+                    <div class="col-sm">
+                      <h3>Harga</h3>
+                    </div>
+                    <div class="col-sm-lg total">
+                      <input value="{{ $item->price  }}" type="number" id="price" name="subTotal">
+                      <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden>
+                    </div>
+                  </div>
+                 <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                    Bayar
+                 </button>
+               </form>
+            @endauth
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2"
+                    >Masuk untuk melanjutkan
+                </a>
+            @endguest
           </div>
         </div>
       </div>
@@ -142,7 +122,7 @@
     $('.navbar').toggleClass('trans', offset < 50);
   });
 </script>
-  <script>
+  {{-- <script>
     const plus = document.querySelector(".plus"),
     minus = document.querySelector(".minus"),
     num  = document.querySelector(".num");
@@ -164,6 +144,32 @@
         console.log(a);
       }
     });
+  </script> --}}
+  <script>
+
+    let a = 1;
+    var defaultPrice = document.getElementById('defaultPrice');
+    var price = document.getElementById('price');
+    function handleQty(e){
+
+        console.log(e)
+        var hasil = e*defaultPrice.value
+        console.log(hasil)
+        price.value = hasil
+    // if (e == 'plus') {
+    //     a++;
+    //     a = (a < 10) ? "0" + a : a;
+    //     num.innerText = a;
+    //     console.log(a);
+    // }else{
+    //     if(a>1){
+    //         a--;
+    //         a = (a < 10) ? "0" + a : a;
+    //         num.innerText = a;
+    //         console.log(a);
+    //     }
+    // }
+}
   </script>
 @endpush
 

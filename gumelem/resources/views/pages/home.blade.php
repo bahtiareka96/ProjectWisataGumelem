@@ -11,7 +11,7 @@
            <br>
            Gumelem
         </h1>
-        <a href="#" class="btn btn-get-started px-4 mt-4">
+        <a href="{{ url('about/'.$dataAbout->slug) }}" class="btn btn-get-started px-4 mt-4">
           Get Started
         </a>
       </header>
@@ -30,50 +30,19 @@
         <section class="section-wisata-content" id="wisataContent">
           <div class="container">
             <div class="section-wisata-travel row justify-content-center">
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/hotspring.jpg');">
-                  <div class="travel-location">Pemandian Banyu Anget Pingit</div>
-                  <div class="travel-button mt-auto">
-                    <a href="#" class="btn btn-travel-details px-4">
-                      View Details
-                    </a>
-                  </div>
+              @foreach ($dataGalleries as $item)
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card-travel text-center d-flex flex-column"
+                    style="background-image: url('{{ $item->wisata_galleries->count() ? Storage::url($item->wisata_galleries->first()->image) : '' }}');">
+                    <div class="travel-location">{{ $item->title }}</div>
+                    <div class="travel-button mt-auto">
+                        <a href="{{ route('detail', $item->slug) }}" class="btn btn-travel-details px-4">
+                        View Details
+                        </a>
+                    </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/grave.jpg');">
-                  <div class="travel-location">Makam Pademangan</div>
-                  <div class="travel-button mt-auto">
-                    <a href="#" class="btn btn-travel-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/grave.jpg');">
-                  <div class="travel-location">Makam Ki Ageng Giring</div>
-                  <div class="travel-button mt-auto">
-                    <a href="/details" class="btn btn-travel-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/grave.jpg');">
-                  <div class="travel-location">Makam Sunan Geseng</div>
-                  <div class="travel-button mt-auto">
-                    <a href="#" class="btn btn-travel-details px-4">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
           </div>
         </section>
@@ -89,11 +58,6 @@
                <div class="merchandise-button mt-auto">
               </div>
               </div>
-              <!-- <div class="col-md-4">
-                <div class="card-merchandise d-flex flex-column align-items-center"
-                style="background-image: url('frontend/images/merch.png');">
-                </div>
-              </div> -->
             </div>
           </div>
         </section>
@@ -104,58 +68,21 @@
                 <div class="row mx-auto my-auto justify-content-center">
                     <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <div class="col-sm-6 col-md-4 col-lg-3">
-                                    <div class="card-merchandise-item text-center d-flex flex-column"
-                                        style="background-image: url('frontend/images/hotspring.jpg');">
-                                        <div class="item-location">Motif A</div>
-                                            <div class="item-button mt-auto">
-                                                <a href="#" class="btn btn-merchandise-details px-4">
-                                                    View Details
-                                                </a>
-                                            </div>
+                               @foreach ($dataMerchandises as $item)
+                               <div class="carousel-item active">
+                                    <div class="col-sm-6 col-md-4 col-lg-3">
+                                        <div class="card-merchandise-item text-center d-flex flex-column"
+                                            style="background-image: url('{{ $item->merchandise_galleries->count() ? Storage::url($item->merchandise_galleries->first()->image) : '' }}');">
+                                            <div class="item-location">{{ $item->title }}</div>
+                                                <div class="item-button mt-auto">
+                                                    <a href="{{ route('order', $item->slug) }}" class="btn btn-merchandise-details px-4">
+                                                        View Details
+                                                    </a>
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="col-sm-6 col-md-4 col-lg-3">
-                                    <div class="card-merchandise-item text-center d-flex flex-column"
-                                        style="background-image: url('frontend/images/hotspring.jpg');">
-                                        <div class="item-location">Motif B</div>
-                                            <div class="item-button mt-auto">
-                                                <a href="#" class="btn btn-merchandise-details px-4">
-                                                    View Details
-                                                </a>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="col-sm-6 col-md-4 col-lg-3">
-                                    <div class="card-merchandise-item text-center d-flex flex-column"
-                                        style="background-image: url('frontend/images/hotspring.jpg');">
-                                        <div class="item-location">Motif C</div>
-                                            <div class="item-button mt-auto">
-                                                <a href="#" class="btn btn-merchandise-details px-4">
-                                                    View Details
-                                                </a>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="col-sm-6 col-md-4 col-lg-3">
-                                    <div class="card-merchandise-item text-center d-flex flex-column"
-                                        style="background-image: url('frontend/images/hotspring.jpg');">
-                                        <div class="item-location">Motif D</div>
-                                            <div class="item-button mt-auto">
-                                                <a href="#" class="btn btn-merchandise-details px-4">
-                                                    View Details
-                                                </a>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
+                               @endforeach
                         </div>
                         <a class="carousel-control-prev bg-dark w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -236,5 +163,11 @@
             </div>
           </div>
         </section>
+        <h5 class="text-center">Are you interested?</h5>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{{ route('register') }}" class="btn btn-join-now px-4 mt-4">Join Us</a>
+            </div>
+        </div>
       </main>
 @endsection

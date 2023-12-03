@@ -13,7 +13,7 @@
             <div class="col p-0 pl-3 pl-lg-0">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Objek Wisata</li>
                 </ol>
               </nav>
@@ -22,63 +22,34 @@
           <div class="row">
             <div class="col-lg-8 pl-lg-0">
               <div class="card card-details">
-                <h1>Pemandian Banyu Anget Pingit</h1>
+                <h1>{{ $item->title }}</h1>
+                @if ($item->wisata_galleries->count())
                 <div class="gallery">
-                  <div class="xzoom-container-sm">
-                    <img
-                      class="xzoom"
-                      id="xzoom-default"
-                      src="frontend/images/Details-1.jpg"
-                      xoriginal="frontend/images/Details-1.jpg"
-                    />
-                    <div class="xzoom-thumbs">
-                      <a href="frontend/images/Details-1.jpg"
-                        ><img
-                          class="xzoom-gallery"
-                          width="128"
-                          src="frontend/images/Details-1.jpg"
-                          xpreview="frontend/images/Details-1.jpg"
-                      /></a>
-                      <a href="frontend/images/Details-1.jpg"
-                        ><img
-                          class="xzoom-gallery"
-                          width="128"
-                          src="frontend/images/Details-1.jpg"
-                          xpreview="frontend/images/Details-1.jpg"
-                      /></a>
-                      <a href="frontend/images/Details-1.jpg"
-                        ><img
-                          class="xzoom-gallery"
-                          width="128"
-                          src="frontend/images/Details-1.jpg"
-                          xpreview="frontend/images/Details-1.jpg"
-                      /></a>
-                      <a href="frontend/images/Details-1.jpg"
-                        ><img
-                          class="xzoom-gallery"
-                          width="128"
-                          src="frontend/images/Details-1.jpg"
-                          xpreview="frontend/images/Details-1.jpg"
-                      /></a>
-                      <a href="frontend/images/Details-1.jpg"
-                        ><img
-                          class="xzoom-gallery"
-                          width="128"
-                          src="frontend/images/Details-1.jpg"
-                          xpreview="frontend/images/Details-1.jpg"
-                      /></a>
+                    <div class="xzoom-container-sm">
+                      <img
+                        class="xzoom mb-2"
+                        id="xzoom-default"
+                        src="{{ Storage::url($item->wisata_galleries->first()->image) }}"
+                        xoriginal="{{ Storage::url($item->wisata_galleries->first()->image) }}"
+                      />
+                      <div class="xzoom-thumbs">
+                        @foreach ($item->wisata_galleries as $gallery)
+                            <a href="{{ Storage::url($gallery->image) }}"
+                                ><img
+                                class="xzoom-gallery"
+                                width="128"
+                                src="{{ Storage::url($gallery->image) }}"
+                                xpreview="{{ Storage::url($gallery->image) }}"/>
+                            </a>
+                        @endforeach
+                      </div>
                     </div>
+                    <h2>Tentang Wisata</h2>
+                    <p>
+                        {!! $item->about !!}
+                    </p>
                   </div>
-                  <h2>Tentang Wisata</h2>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                  </p>
-                  <p>
-                    Bali and a district of Klungkung Regency that includes the
-                    neighbouring small island of Nusa Lembongan. The Badung
-                    Strait separates the island and Bali.
-                  </p>
-                </div>
+                @endif
               </div>
             </div>
             <div class="col-lg-4">
@@ -87,10 +58,10 @@
                 <br>
                 <h3>Peta Lokasi</h3>
                 <div class="ratio ratio-16x9">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.526123498345!2d109.41679267512967!3d-7.517445292495397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e654fd15052db83%3A0x831df2015ff755c9!2sPemandian%20Air%20Panas%20Pingit!5e0!3m2!1sid!2sid!4v1699083555367!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <iframe src="{{ $item->location }}"></iframe>
                 </div>
                 <div class="join-container">
-                  <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2"
+                  <a href="{{ $item->location }}" target="_blank" class="btn btn-block btn-join-now mt-3 py-2"
                   >Menuju Lokasi
                   </a>
                 </div>

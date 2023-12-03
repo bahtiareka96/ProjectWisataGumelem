@@ -1748,7 +1748,7 @@ progress {
   --bs-table-active-bg: rgba(0, 0, 0, 0.1);
   --bs-table-hover-color: var(--bs-body-color);
   --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
-  width: 100%;
+  width: 80%;
   margin-bottom: 1rem;
   color: var(--bs-table-color);
   vertical-align: top;
@@ -1938,6 +1938,7 @@ progress {
 }
 @media (max-width: 767.98px) {
   .table-responsive-md {
+    max-height: 400px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -11111,7 +11112,7 @@ body {
 }
 
 .datatable-selector {
-  width: auto;
+  width: 1500px;
   display: inline-block;
   padding-left: 1.125rem;
   padding-right: 2.125rem;
@@ -11162,7 +11163,7 @@ body {
 .datatable-table > tfoot > tr > th,
 .datatable-table > thead > tr > td,
 .datatable-table > thead > tr > th {
-  vertical-align: top;
+  vertical-align: center;
   padding: 0.5rem 0.5rem;
 }
 

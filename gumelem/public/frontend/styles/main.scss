@@ -92,7 +92,7 @@ header {
     margin-bottom: -400px;
 
     .section-wisata-heading {
-        margin-top: 50px;
+        margin-top: 100px;
         margin-bottom: 500px;
 
         h2,
@@ -195,51 +195,50 @@ header {
 
 .section-merchandise-content {
     .section-merchandise-item {
-        @media (max-width: 767px) {
+        #recipeCarousel {
+            margin-top: 50px;
+          }
+
+          @media (max-width: 768px) {
+            .carousel-inner .carousel-item > div {
+              display: none;
+
+              &:first-child {
+                display: block;
+              }
+            }
+          }
+
+          .carousel-inner {
+            .carousel-item.active, .carousel-item-start, .carousel-item-next, .carousel-item-prev {
+              display: flex;
+            }
+          }
+
+          @media (min-width: 768px) {
             .carousel-inner {
-                .carousel-item {
-                    >div {
-                        display: none;
-                        &:first-child {
-                            display: block;
-                        }
-                    }
-                }
+              .carousel-item-right.active, .carousel-item-next {
+                transform: translateX(25%) !important;
+              }
             }
-        }
-        .carousel-inner {
-            .carousel-item.active {
-                display: flex;
+
+            .carousel-item-next:not(.carousel-item-start) {
+              transform: translateX(25%) !important;
             }
-            .carousel-item-next {
-                display: flex;
+
+            .carousel-inner .carousel-item-left.active, .carousel-item-prev:not(.carousel-item-end), .active.carousel-item-start, .carousel-item-prev:not(.carousel-item-end) {
+              transform: translateX(-25%) !important;
             }
-            .carousel-item-prev {
-                display: flex;
+
+            .carousel-item-next.carousel-item-start, .active.carousel-item-end {
+              transform: translateX(0) !important;
             }
-            .carousel-item-end {
-                transform: translateX(0);
+
+            .carousel-inner .carousel-item-prev, .carousel-item-prev:not(.carousel-item-end) {
+              transform: translateX(-25%) !important;
             }
-            .carousel-item-start {
-                transform: translateX(0);
-            }
-        }
-        @media (min-width: 768px) {
-            .carousel-inner {
-                // .carousel-item-end.active {
-                //     transform: translateX(25%);
-                // }
-                .carousel-item-next {
-                    transform: translateX(25%);
-                }
-                // .carousel-item-start.active {
-                //     transform: translateX(-15%);
-                // }
-                .carousel-item-prev {
-                    transform: translateX(-25%);
-                }
-            }
-        }
+          }
+
         .card-merchandise-item {
             min-height: 300px;
             background-color: #ddd;
@@ -422,11 +421,12 @@ footer {
         width: 400px;
         height: 400px;
         box-shadow: none;
-        margin-bottom: 10px;
+        margin: 10px;
         }
 
         .xactive {
             border: 4px solid #243A36;
+            margin: 10px;
         }
     }
 }
@@ -906,18 +906,19 @@ footer {
 }
 
 .gallery {
-    .xzoom-container {
+    .xzoom-container-sm {
         display: block;
 
         .xzoom {
-        width: 100%;
-        height: 700px;
+        width: 100% !important;
+        height: 500px;
         box-shadow: none;
         margin-bottom: 10px;
         }
 
         .xactive {
             border: 4px solid #243A36;
+            height: 100px;
         }
     }
 }

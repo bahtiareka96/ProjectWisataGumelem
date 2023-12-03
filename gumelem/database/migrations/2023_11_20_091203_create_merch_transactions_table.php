@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('merchandise_transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('merchandise_id');
+            $table->integer('merchandise_orders_id');
             $table->integer('users_id')->nullable();
             $table->string('email');
             $table->string('address');
             $table->string('expedition');
-            $table->integer('quantity');
+            $table->integer('quantity_order');
             $table->integer('price');
             $table->integer('expedition_price');
             $table->integer('total_price');

@@ -20,81 +20,19 @@
         </nav>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-8 pl-lg-0">
+    <div class="container-md">
+      <div class="col-md-8 mx-auto">
         <div class="card card-payment-details">
-          <h1>Pengiriman dan pembayaran</h1>
-          <div class="row pt-2 pb-2">
-            <div class="col-sm">
-              <h3>Email</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>abc@gmail.com</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Alamat</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Jl.Sarwoendah 2, Purwokerto Kidul, Purwokerto Selatan, Kab. Banyumas</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Pengiriman</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Reguler</h4>
-            </div>
-          </div>
-          <hr class="hr" />
-          <h2>Ringkasan Pembelian</h2>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Jumlah</h3>
-            </div>
-            <div class="col-sm-lg">
-                <div class="wrapper wrapper-1">
-                  <span class="minus">-</span>
-                  <span class="num">01</span>
-                  <span class="plus">+</span>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ errror }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-              </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Harga</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Rp.5000</h4>
-            </div>
-          </div>
-          <div class="row pb-2">
-            <div class="col-sm">
-              <h3>Ongkos Kirim</h3>
-            </div>
-            <div class="col-sm-lg">
-              <h4>Rp.0</h4>
-            </div>
-          </div>
-          <hr class="hr" />
-          <h2>Total Biaya</h2>
-          <div class="row pb-2">
-            <div class="col-sm-lg">
-              <h4>Rp.5000</h4>
-            </div>
-          </div>
-          <div class="join-container">
-            <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2"
-              >Bayar
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm">
-        <div class="card card-payment-details text-center card-right">
-          <h2>Produk</h2>
+            @endif
+            <h2>Produk</h2>
           <div class="product">
             <table class="table table-responsive-sm text-center">
                 <thead>
@@ -107,14 +45,81 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img src="frontend/images/merch.png" height="60">
+                            <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="60">
                         </td>
-                        <td class="align-middle">Batik Motif A</td>
+                        <td class="align-middle">{{ $item->merchandise_order->name }}</td>
                         <td class="align-middle">1</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+          <h2>Pengiriman dan pembayaran</h2>
+          <div class="row pt-2 pb-2">
+            <div class="col-sm">
+              <h3>Email</h3>
+            </div>
+            <div class="col-sm-lg">
+              <h4>{{ $item->merchandise_transactions->email }}</h4>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <div class="col-sm">
+              <h3>Alamat</h3>
+            </div>
+            <div class="col-sm-lg">
+              <h4>{{ $item->merchandise_transactions->address }}</h4>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <div class="col-sm">
+              <h3>Pengiriman</h3>
+            </div>
+            <div class="col-sm-lg">
+              <h4>{{ $item->merchandise_transactions->expedition }}</h4>
+            </div>
+          </div>
+          <hr class="hr" />
+          <h2>Ringkasan Pembelian</h2>
+          {{-- <div class="row pb-2">
+            <div class="col-sm">
+              <h3>Jumlah</h3>
+            </div>
+            <div class="col-sm-lg">
+                <div class="wrapper wrapper-1">
+                  <span class="minus">-</span>
+                  <span class="num">01</span>
+                  <span class="plus">+</span>
+                </div>
+              </div>
+          </div> --}}
+          <div class="row pb-2">
+            <div class="col-sm">
+              <h3>Harga</h3>
+            </div>
+            <div class="col-sm-lg">
+              <h4>{{ $item->merchandise_order->price }}</h4>
+            </div>
+          </div>
+          <div class="row pb-2">
+            <div class="col-sm">
+              <h3>Ongkos Kirim</h3>
+            </div>
+            <div class="col-sm-lg">
+              <h4>{{ $item->merchandise_transactions->expedition_price }}</h4>
+            </div>
+          </div>
+          <hr class="hr" />
+          <h2>Total Biaya</h2>
+          <div class="row pb-2">
+            <div class="col-sm-lg">
+              <h4>{{ {{ $item->merchandise_transactions->total_price }} }}</h4>
+            </div>
+          </div>
+          <div class="join-container">
+            <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2"
+              >Bayar
+            </a>
+          </div>
         </div>
       </div>
     </div>
