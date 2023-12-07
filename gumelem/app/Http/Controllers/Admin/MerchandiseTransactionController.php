@@ -15,7 +15,16 @@ class MerchandiseTransactionController extends Controller
      */
     public function index($id)
     {
-        dd($id);
+        $items = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();
+
+        return view('pages.admin.merchandise-transaction.index',[
+            'items' => $items
+        ]);
+    }
+
+    public function order(Request $request, $id)
+    {
+        // dd($id);
         $items = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();
 
         return view('pages.admin.merchandise-transaction.index',[

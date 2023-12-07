@@ -47,8 +47,8 @@
                         <td>
                             <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="60">
                         </td>
-                        <td class="align-middle">{{ $item->merchandise_order->name }}</td>
-                        <td class="align-middle">1</td>
+                        <td class="align-middle">{{ $item->merchandise_order->title }}</td>
+                        <td class="align-middle">{{ $item->merchandise_transactions->order_quantity }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -116,7 +116,7 @@
             </div>
           </div>
           <div class="join-container">
-            <a href="checkout.html" class="btn btn-block btn-join-now mt-3 py-2"
+            <a href="#" class="btn btn-block btn-join-now mt-3 py-2"
               >Bayar
             </a>
           </div>

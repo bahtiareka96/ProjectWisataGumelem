@@ -505,6 +505,21 @@ footer .section-footer {
   text-align: center;
 }
 
+.text-currency {
+  align-items: end;
+  text-align: end;
+  text-decoration: none;
+  color: black;
+  padding-left: 110px;
+}
+
+.no-outline {
+  border: none;
+  outline: none;
+  text-align: start;
+  align-items: start;
+}
+
 .btn-join-now {
   background-color: #7B9242;
   color: #fff;

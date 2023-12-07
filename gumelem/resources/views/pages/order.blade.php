@@ -57,13 +57,13 @@
           <h2>Detail Produk</h2>
           <div class="join-container">
             @auth
-               <form action="{{ route('ordermerch') }}" method="POST">
+               <form action="{{ route('detailmerch_process', $item->id) }}" method="POST">
                 @csrf
                 <div class="row pb-2">
                     <div class="col-sm">
                       <h3>Jumlah</h3>
                     </div>
-                    <div class="col-sm-lg">
+                    <div class="col-sm-lg quanti">
                       <div class="wrapper wrapper-1">
                         <input class="num" onKeyDown="return false" min="1" max="{{ $item->quantity }}" onchange="handleQty(this.value)" type="number" value="1" name="quantity_order">
                       </div>
@@ -73,9 +73,10 @@
                     <div class="col-sm">
                       <h3>Harga</h3>
                     </div>
-                    <div class="col-sm-lg total">
-                      <input value="{{ $item->price  }}" type="number" id="price" name="subTotal">
-                      <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden>
+                    <div class="input-group-sm-lg total">
+                        <a class="text-currency">Rp.</a>
+                      <input class="no-outline text-right" value="{{ $item->price  }}"  type="currency" id="price" name="price" readonly>
+                      <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden >
                     </div>
                   </div>
                  <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">

@@ -71,7 +71,7 @@
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Profile
                 </a>
-                <ul class="dropdown-menu" style="margin-right: 10px">
+                <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 10px">
                   <li><a class="dropdown-item" href="{{ url('/users/'.  Auth::id()) }}">User Profile</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><form class="dropdown-item" action="{{ url('logout') }}" method="POST">

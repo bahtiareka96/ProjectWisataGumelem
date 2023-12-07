@@ -35,12 +35,12 @@ Route::get('/detail/{slug}', [DetailController::class, 'index']) -> name('detail
 Route::get('/order/{slug}', [OrderController::class, 'index']) -> name('order');
 
 Route::post('/detailmerch/{id}', [DetailMerchController::class, 'process'])
-    -> name('detailmerch-process')
+    -> name('detailmerch_process')
     -> middleware(['auth', 'verified']);
 
-Route::post('/detailmerch', [DetailMerchController::class, 'order'])
-    -> name('ordermerch')
-    -> middleware(['auth', 'verified']);
+// Route::post('/detailmerch', [DetailMerchController::class, 'order'])
+//     -> name('ordermerch')
+//     -> middleware(['auth', 'verified']);
 
 Route::get('/detailmerch/{id}', [DetailMerchController::class, 'index'])
     -> name('detailmerch')
