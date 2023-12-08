@@ -34,7 +34,7 @@ Route::get('/detail/{slug}', [DetailController::class, 'index']) -> name('detail
 
 Route::get('/order/{slug}', [OrderController::class, 'index']) -> name('order');
 
-Route::post('/detailmerch/{id}', [DetailMerchController::class, 'process'])
+Route::post('/detailmerch', [DetailMerchController::class, 'process'])
     -> name('detailmerch_process')
     -> middleware(['auth', 'verified']);
 

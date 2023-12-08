@@ -22,7 +22,7 @@ class MerchandiseTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'expedition' => 'required|string|in:PENDING,SUCCESS,CANCEL,FAILED',
+            // 'expedition' => 'required|string|in:REGULAR',
             'status' => 'required|string|in:PENDING,SUCCESS,CANCEL,FAILED'
         ];
     }

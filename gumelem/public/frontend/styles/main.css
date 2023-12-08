@@ -505,6 +505,11 @@ footer .section-footer {
   text-align: center;
 }
 
+.num {
+  text-decoration: none;
+  color: black;
+}
+
 .text-currency {
   align-items: end;
   text-align: end;

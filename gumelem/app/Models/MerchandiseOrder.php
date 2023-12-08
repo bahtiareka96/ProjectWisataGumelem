@@ -20,5 +20,9 @@ class MerchandiseOrder extends Model
         return $this->hasMany(MerchandiseGallery::class, 'merchandise_orders_id', 'id');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class,'users_id', 'id');
+    }
+
     use HasFactory;
 }

@@ -57,15 +57,15 @@
           <h2>Detail Produk</h2>
           <div class="join-container">
             @auth
-               <form action="{{ route('detailmerch_process', $item->id) }}" method="POST">
-                @csrf
+               {{-- <form action="{{ route('detailmerch_process') }}" method="POST">
+                @csrf --}}
                 <div class="row pb-2">
                     <div class="col-sm">
-                      <h3>Jumlah</h3>
+                      <h3>Stok Barang</h3>
                     </div>
                     <div class="col-sm-lg quanti">
                       <div class="wrapper wrapper-1">
-                        <input class="num" onKeyDown="return false" min="1" max="{{ $item->quantity }}" onchange="handleQty(this.value)" type="number" value="1" name="quantity_order">
+                        <a class="num" >{{ $item->quantity }}</a>
                       </div>
                     </div>
                   </div>
@@ -79,10 +79,10 @@
                       <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden >
                     </div>
                   </div>
-                 <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                 <a type="button" class="btn btn-block btn-join-now mt-3 py-2" href="{{ route('detailmerch', $item->id) }}">
                     Bayar
-                 </button>
-               </form>
+                 </a>
+               {{-- </form> --}}
             @endauth
             @guest
                 <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2"
@@ -146,7 +146,7 @@
       }
     });
   </script> --}}
-  <script>
+  {{-- <script>
 
     let a = 1;
     var defaultPrice = document.getElementById('defaultPrice');
@@ -171,6 +171,6 @@
     //     }
     // }
 }
-  </script>
+  </script> --}}
 @endpush
 
