@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <hr class="hr" />
-                <div class="row pb-2">
+                <div class="row">
                     <div class="col-sm">
                         <h2>Total Biaya</h2>
                     </div>
@@ -113,6 +113,11 @@
                         <input class="no-outline text-right" value="{{ $item->total_price  }}"  type="currency" id="total_price" name="total_price" readonly>
                     </div>
                 </div>
+                <hr class="hr" />
+                <div class="row py-1 text-center">
+                    <h5>Informasi lebih lanjut akan dikirimkan melalui email</h5>
+                </div>
+                <hr class="hr" />
                 <div class="join-container">
                     <button type="submit" class="btn btn-block btn-join-now mt-3 py-2"
                     >Bayar

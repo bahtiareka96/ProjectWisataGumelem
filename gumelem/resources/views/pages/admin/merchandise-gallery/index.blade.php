@@ -27,7 +27,7 @@
                         <tbody>
                             @forelse ($items as $item)
                             <tr>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->merchandise_order->id }}</td>
                                 <td>{{ $item->merchandise_order->title }}</td>
                                 <td>
                                     <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px" class="img-thumbnail"/>

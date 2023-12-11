@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MerchandiseTransactionController;
 use App\Http\Controllers\Admin\MerchandiseOrderController;
 use App\Http\Controllers\Admin\ObjekWisataController;
 use App\Http\Controllers\Admin\AboutGalleryController;
+use App\Http\Controllers\HistoryTransactionController;
 use App\Http\Controllers\Admin\WisataGalleryController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\DetailMerchController;
@@ -51,6 +52,8 @@ Route::get('/detailmerch/{id}', [DetailMerchController::class, 'index'])
 //     -> middleware(['auth', 'verified']);
 
 Route::get('/about/{slug}', [AboutController::class, 'index']) -> name('about');
+
+Route::get('/history/{id}', [HistoryTransactionController::class, 'index']) -> name('history');
 
 Route::get('/users/show/{id}', [UserController::class, 'show']);
 

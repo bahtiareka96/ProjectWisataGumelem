@@ -792,4 +792,40 @@ footer .section-footer {
 .btn-join-now:hover {
   background-color: #036f2e;
   color: #fff;
+}
+
+.page-login {
+  height: 100vh;
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
+}
+.page-login .logo {
+  height: 50px;
+  width: 120px;
+  text-align: center;
+}
+.page-login .btn-login {
+  background-color: #ff9e53;
+  color: #fff;
+}
+.page-login .btn-login:hover {
+  color: #fff;
+}
+
+.page-register {
+  height: 100vh;
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
+}
+.page-register .logorg {
+  height: 50px;
+  width: 120px;
+  text-align: center;
+}
+.page-register .btn-register {
+  background-color: #ff9e53;
+  color: #fff;
+}
+.page-register .btn-register:hover {
+  color: #fff;
 }/*# sourceMappingURL=main.css.map */
