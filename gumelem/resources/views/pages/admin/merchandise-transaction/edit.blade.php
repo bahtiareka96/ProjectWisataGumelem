@@ -30,6 +30,7 @@
                         ({{ $item->status }})
                         </option>
                         <option value="PENDING">PENDING</option>
+                        <option value="SHIPPING">SHIPPING</option>
                         <option value="SUCCESS">SUCCESS</option>
                         <option value="CANCEL">CANCEL</option>
                         <option value="FAILED">FAILED</option>

@@ -13,7 +13,7 @@ class MerchandiseTransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function index()
     {
         $items = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();
 
@@ -22,7 +22,7 @@ class MerchandiseTransactionController extends Controller
         ]);
     }
 
-    public function order(Request $request, $id)
+    public function order($id)
     {
         // dd($id);
         $items = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();

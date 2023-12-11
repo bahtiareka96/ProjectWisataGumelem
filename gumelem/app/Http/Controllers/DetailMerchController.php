@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailMerchController extends Controller
 {
-    public function index( $id)
+    public function index($id)
     {
         $item = MerchandiseOrder::with(['merchandise_galleries','user'])->findOrFail($id);
         return view('pages.detailmerch',[
             'item' => $item
         ]);
+
+
 
     }
 
@@ -48,30 +50,30 @@ class DetailMerchController extends Controller
 
     public function process(Request $request, $id)
     {
-        dd($request);
+        // dd($request->all());
         $merchandise_order = MerchandiseOrder::findOrFail($id);
-        $merchandise_transaction = MerchandiseTransaction::findOrFail($id);
+        // $merchandise_transaction = MerchandiseTransaction::findOrFail($id);
 
         $transaction = MerchandiseTransaction::create([
             'merchandise_orders_id' => $id,
             'users_id' => Auth::user()->id,
-            'users_email' => Auth::user()->email,
+            'email' => $request->email,
             'address' => $request->address,
             'expedition' => $request->expedition,
             'quantity_order' => $request->quantity_order,
             'price' => $request->price,
-            'expedition_price' => 5000,
+            'expedition_price' => $request->expedition_price,
             'total_price' => $request->total_price,
             'status' => 'PENDING'
         ]);
 
+
+
         $merchandise_order->decrement('quantity', $transaction->quantity_order);
 
+        $transaction->save();
 
-
-        // // $transaction->total_price += $transaction->merchandise_order->price;
-
-        return redirect()->route('detailmerch', $transaction->id);
+        // return redirect()->route('detailmerch', $transaction->id);
 
     }
 

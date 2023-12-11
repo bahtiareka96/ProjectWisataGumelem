@@ -23,7 +23,7 @@ class MerchandiseTransactionRequest extends FormRequest
     {
         return [
             // 'expedition' => 'required|string|in:REGULAR',
-            'status' => 'required|string|in:PENDING,SUCCESS,CANCEL,FAILED'
+            'status' => 'required|string|in:PENDING,SHIPPING,SUCCESS,CANCEL,FAILED'
         ];
     }
 }

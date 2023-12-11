@@ -34,25 +34,21 @@ Route::get('/detail/{slug}', [DetailController::class, 'index']) -> name('detail
 
 Route::get('/order/{slug}', [OrderController::class, 'index']) -> name('order');
 
-Route::post('/detailmerch', [DetailMerchController::class, 'process'])
+Route::post('/detailmerch/{id}', [DetailMerchController::class, 'process'])
     -> name('detailmerch_process')
     -> middleware(['auth', 'verified']);
-
-// Route::post('/detailmerch', [DetailMerchController::class, 'order'])
-//     -> name('ordermerch')
-//     -> middleware(['auth', 'verified']);
 
 Route::get('/detailmerch/{id}', [DetailMerchController::class, 'index'])
     -> name('detailmerch')
     -> middleware(['auth', 'verified']);
 
-Route::get('/detailmerch/confirm/{id}', [DetailMerchController::class, 'success'])
-    -> name('detailmerch-success')
-    -> middleware(['auth', 'verified']);
+// Route::get('/detailmerch/confirm/{id}', [DetailMerchController::class, 'success'])
+//     -> name('detailmerch-success')
+//     -> middleware(['auth', 'verified']);
 
-Route::get('/detailmerch/remove/{id}', [DetailMerchController::class, 'remove'])
-    -> name('detailmerch-remove')
-    -> middleware(['auth', 'verified']);
+// Route::get('/detailmerch/remove/{id}', [DetailMerchController::class, 'remove'])
+//     -> name('detailmerch-remove')
+//     -> middleware(['auth', 'verified']);
 
 Route::get('/about/{slug}', [AboutController::class, 'index']) -> name('about');
 

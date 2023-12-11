@@ -14,7 +14,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item" aria-current="page">Merchandise</li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Merchandise</a></li>
             <li class="breadcrumb-item active" aria-current="page">Checkout</li>
           </ol>
         </nav>
@@ -33,10 +33,10 @@
                 </div>
             @endif
             <h2>Produk</h2>
-            <form action="{{ route('detailmerch_process') }}" method="POST">
+            <form action="{{ route('detailmerch_process', $item->id) }}" method="POST">
                 @csrf
                 <div class="product">
-                    <table class="table table-responsive-sm text-center">
+                    <table class="table table-responsive-sm-lg text-center">
                         <thead>
                             <tr>
                                 <td colspan="2">Produk</td>
@@ -58,44 +58,32 @@
                     </table>
                 </div>
                 <h2>Pengiriman dan pembayaran</h2>
-                <div class="row pt-2 pb-2">
+                <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Email</h3>
                     </div>
-                    <div class="col-sm-lg">
-                    <h4>{{ $item->email }}</h4>
+                    <div class="col-sm-5">
+                    <input type="text" class="no-outline text-center" name="email" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
                     </div>
                 </div>
                 <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Alamat</h3>
                     </div>
-                    <div class="col-sm">
-                        <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{ $item->address }}">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
                     </div>
                 </div>
                 <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Pengiriman</h3>
                     </div>
-                    <div class="col-sm-lg">
-                    <h4>{{ $item->expedition }}</h4>
+                    <div class="col-sm-5">
+                        <input type="text" class="no-outline text-center" name="expedition" placeholder="Pengiriman" value="REGULAR" readonly>
                     </div>
                 </div>
                 <hr class="hr" />
                 <h2>Ringkasan Pembelian</h2>
-                {{-- <div class="row pb-2">
-                    <div class="col-sm">
-                    <h3>Jumlah</h3>
-                    </div>
-                    <div class="col-sm-lg">
-                        <div class="wrapper wrapper-1">
-                        <span class="minus">-</span>
-                        <span class="num">01</span>
-                        <span class="plus">+</span>
-                        </div>
-                    </div>
-                </div> --}}
                 <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Harga</h3>
@@ -110,21 +98,25 @@
                     <div class="col-sm">
                     <h3>Ongkos Kirim</h3>
                     </div>
-                    <div class="col-sm-lg">
-                    <h4>{{ $item->expedition_price }}</h4>
+                    <div class="col-sm">
+                        <a class="text-currency">Rp.</a>
+                        <input type="text" class="no-outline text-right" name="expedition_price" id="expedition_price" placeholder="Harga Pengiriman" value="5000" readonly>
                     </div>
                 </div>
                 <hr class="hr" />
-                <h2>Total Biaya</h2>
                 <div class="row pb-2">
-                    <div class="col-sm-lg">
-                    <h4>{{  $item->total_price  }}</h4>
+                    <div class="col-sm">
+                        <h2>Total Biaya</h2>
+                    </div>
+                    <div class="col-sm">
+                        <a class="text-currency">Rp.</a>
+                        <input class="no-outline text-right" value="{{ $item->total_price  }}"  type="currency" id="total_price" name="total_price" readonly>
                     </div>
                 </div>
                 <div class="join-container">
-                    <a href="#" class="btn btn-block btn-join-now mt-3 py-2"
+                    <button type="submit" class="btn btn-block btn-join-now mt-3 py-2"
                     >Bayar
-                    </a>
+                    </button>
                 </div>
             </form>
         </div>
@@ -185,30 +177,49 @@
   </script> --}}
 
 <script>
-
-    let a = 1;
     var defaultPrice = document.getElementById('defaultPrice');
     var price = document.getElementById('price');
-    function handleQty(e){
+    var total_price = document.getElementById('total_price');
+    var expeditionPrice = document.getElementById('expedition_price');
 
-        console.log(e)
-        var hasil = e*defaultPrice.value
-        console.log(hasil)
-        price.value = hasil
-    // if (e == 'plus') {
-    //     a++;
-    //     a = (a < 10) ? "0" + a : a;
-    //     num.innerText = a;
-    //     console.log(a);
-    // }else{
-    //     if(a>1){
-    //         a--;
-    //         a = (a < 10) ? "0" + a : a;
-    //         num.innerText = a;
-    //         console.log(a);
-    //     }
+    function handleQty(e){
+        console.log(e);
+        var hasil = e * parseFloat(defaultPrice.value);
+        console.log(hasil);
+        price.value = hasil;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        var expedition_price = parseFloat(expeditionPrice.value);
+        var product_price = parseFloat(price.value);
+        var total = expedition_price + product_price;
+        total_price.value = total;
+    }
+
+
+    window.onload = function() {
+        updateTotal();
+    };
+
+
+    // let a = 1;
+    // var defaultPrice = document.getElementById('defaultPrice');
+    // var price = document.getElementById('price');
+    // var expeditionPrice = document.getElementById('expedition_price')
+    // var total_price = document.getElementById('total_price')
+    // function handleQty(e){
+
+    //     console.log(e)
+    //     var hasil = e * defaultPrice.value
+    //     console.log(hasil)
+    //     price.value = hasil + handleTotal()
     // }
-}
-  </script>
+
+    // function handleTotal(){
+    //     var expedition_price = parseFloat(expeditionPrice.value)
+    //     return expedition_price
+    // }
+</script>
 @endpush
 
