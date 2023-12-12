@@ -73,7 +73,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 10px">
                   <li><a class="dropdown-item" href="{{ url('/users/'.  Auth::id()) }}">User Profile</a></li>
-                  <li><a class="dropdown-item" href="{{ url('/history/'. Auth::id()) }}">History</a></li>
+                  <li><a class="dropdown-item" href="{{ route('history', Auth::user()->id) }}">History</a></li>
                   <li><form class="dropdown-item" action="{{ url('logout') }}" method="POST">
                     @csrf
                     <button class="btn btn-login btn-navbar-right my-2 my-sm-0 px-4" type="submit">

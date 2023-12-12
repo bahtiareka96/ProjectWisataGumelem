@@ -19,11 +19,9 @@
         </nav>
       </div>
     </div>
-
-    <div class="container-sm">
+    <div class="container-sm my-2">
       <div class="col-sm-8 mx-auto">
-        <div class="card card-payment-details">
-            @if ($errors->any())
+        @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -32,146 +30,154 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('history', $item->id) }}" method="GET">
-                @csrf
-                <div class="row g-2">
-                    <div class="col-2">
-                        <div class="title p-8 no-border text-center">
-                            ID Transaksi  : {{ $item->id }}
+            @forelse ($item as $item)
+        <div class="card card-payment-details my-2">
+                    <div class="row g-2">
+                        <div class="col-2">
+                            <div class="title p-8 no-border text-center">
+                                ID Transaksi  : {{ $item->id }}
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="image p-8  no-border text-end">
+                                {{ $item->status }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-10">
-                        <div class="image p-8  no-border text-end">
-                            {{ $item->status }}
+                    <hr>
+                    <div class="row g-2">
+                        <div class="col-4 my-2">
+                            <div class="image p-4 no-border text-center">
+                                <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="70">
+                            </div>
+                        </div>
+                        <div class="col-4 my-auto">
+                            <div class="title p-4 no-border text-center">
+                                {{ $item->merchandise_order->title }}
+                            </div>
+                        </div>
+                        <div class="col-4 my-auto">
+                            <div class="title p-4 no-border text-center">
+                                {{ $item->quantity_order }} X
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr>
-                <div class="row g-2">
-                    <div class="col-4 my-2">
-                        <div class="image p-4 no-border text-center">
-                            <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="70">
+                    <hr>
+                    <div class="row g-2">
+                        <div class="col-2">
+                            <div class="image p-2 no-border text-center">
+                               Informasi
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4 my-auto">
-                        <div class="title p-4 no-border text-center">
-                            {{ $item->merchandise_order->title }}
-                        </div>
-                    </div>
-                    <div class="col-4 my-auto">
-                        <div class="title p-4 no-border text-center">
-                            {{ $item->quantity_order }} X
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row g-2">
-                    <div class="col-2">
-                        <div class="image p-2 no-border text-center">
-                           Informasi
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row g-2">
-                    <div class="col-3">
-                        <div class="image p-3 no-border text-center">
-                            {{ Auth::user()->email }}
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <div class="image p-3 no-border text-center">
+                                {{ Auth::user()->email }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                                {{ Auth::user()->phone_number }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                                {{ $item->address }}
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                                {{ $item->expedition }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                            {{ Auth::user()->phone_number }}
+                    <hr>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <div class="image p-3 no-border text-start">
+                                Rincian Pembayaran
+                            </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                            {{ $item->address }}
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <div class="image p-3 no-border text-center">
+                                Ongkos Kirim
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                            {{ $item->expedition }} X
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row g-2">
-                    <div class="col-3">
-                        <div class="image p-3 no-border text-start">
-                            Rincian Pembayaran
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-2">
-                    <div class="col-3">
-                        <div class="image p-3 no-border text-center">
-                            Ongkos Kirim
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                                Rp. {{ $item->expedition_price }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                            Rp. {{ $item->expedition_price }}
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <div class="image p-3 no-border text-center">
+                                Harga
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row g-2">
-                    <div class="col-3">
-                        <div class="image p-3 no-border text-center">
-                            Harga
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                               Rp. {{ $item->price }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                           Rp. {{ $item->price }}
+                    <hr>
+                    <div class="row g-2">
+                        <div class="col-3">
+                            <div class="image p-3 no-border text-center">
+                                Total Biaya
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row g-2">
-                    <div class="col-3">
-                        <div class="image p-3 no-border text-center">
-                            Total Biaya
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
 
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="title p-3 no-border text-center">
+                               Rp. {{ $item->total_price }}
+                            </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="title p-3 no-border text-center">
-                           Rp. {{ $item->total_price }}
-                        </div>
-                    </div>
-                </div>
-            </form>
+
         </div>
+        @empty
+        <tr>
+            <td colspan="11" class="text-center">
+                Data Kosong
+            </td>
+        </tr>
+        @endforelse
+
       </div>
     </div>
   </div>

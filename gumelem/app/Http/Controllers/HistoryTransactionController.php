@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class HistoryTransactionController extends Controller
 {
-    public function index($id)
+    public function index($users_id)
     {
+        $item = MerchandiseTransaction::with(['merchandise_order','merchandise_galleries', 'user'])
+        ->where('users_id',$users_id)
+        ->get();
 
-        $item = MerchandiseTransaction::with(['merchandise_order','merchandise_galleries', 'user'])->findOrFail($id);
+
 
         return view('pages.history',[
             'item' => $item

@@ -15,10 +15,10 @@ class MerchandiseTransactionController extends Controller
      */
     public function index()
     {
-        $items = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();
+        $item = MerchandiseTransaction::with(['merchandise_order', 'user'])->get();
 
         return view('pages.admin.merchandise-transaction.index',[
-            'items' => $items
+            'item' => $item
         ]);
     }
 
