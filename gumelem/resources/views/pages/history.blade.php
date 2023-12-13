@@ -177,7 +177,6 @@
             </td>
         </tr>
         @endforelse
-
       </div>
     </div>
   </div>

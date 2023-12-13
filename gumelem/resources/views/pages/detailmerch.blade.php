@@ -49,6 +49,7 @@
                                     <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="60">
                                 </td>
                                 <td class="align-middle">{{ $item->title }}</td>
+                                <td class="align-middle">Berat</td>
                                 <td class="align-middle">
                                     <input class="num" onKeyDown="return false" min="1" max="{{ $item->quantity }}" onchange="handleQty(this.value)" type="number" value="1" name="quantity_order">
                                 </td>
@@ -68,6 +69,67 @@
                 </div>
                 <div class="row pb-2">
                     <div class="col-sm">
+                    <h3>Nomor Hp</h3>
+                    </div>
+                    <div class="col-sm-5">
+                    <input type="number" class="no-outline text-center" name="phone_number" placeholder="Phone Number" value="{{ Auth::user()->phone_number }}" readonly>
+                    </div>
+                </div>
+
+                <div class="card card-payment-details">
+                    <h2>Atur Alamat dan Pengiriman</h2>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Provinsi</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Kota</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Kode Pos</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Alamat</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Pengiriman</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="no-outline text-center" name="expedition" placeholder="Pengiriman" value="REGULAR" readonly>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Paket Pengiriman</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="no-outline text-center" name="expedition" placeholder="Pengiriman" value="REGULAR" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="row pb-2">
+                    <div class="col-sm">
                     <h3>Alamat</h3>
                     </div>
                     <div class="col-sm-5">
@@ -81,7 +143,7 @@
                     <div class="col-sm-5">
                         <input type="text" class="no-outline text-center" name="expedition" placeholder="Pengiriman" value="REGULAR" readonly>
                     </div>
-                </div>
+                </div> --}}
                 <hr class="hr" />
                 <h2>Ringkasan Pembelian</h2>
                 <div class="row pb-2">
@@ -113,10 +175,10 @@
                         <input class="no-outline text-right" value="{{ $item->total_price  }}"  type="currency" id="total_price" name="total_price" readonly>
                     </div>
                 </div>
-                <hr class="hr" />
+                {{-- <hr class="hr" />
                 <div class="row py-1 text-center">
                     <h5>Informasi lebih lanjut akan dikirimkan melalui email</h5>
-                </div>
+                </div> --}}
                 <hr class="hr" />
                 <div class="join-container">
                     <button type="submit" class="btn btn-block btn-join-now mt-3 py-2"

@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->text('image');
-            $table->softDeletes();
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('province_id');
+            $table->unsignedInteger('city_id');
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -23,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image');
-        });
+        Schema::dropIfExists('cities');
     }
 };

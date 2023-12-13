@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('image');
-            $table->softDeletes();
-            $table->timestamps();
+            $table->string('address')->nullable();
+            $table->integer('province_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('post_code')->nullable();
         });
     }
 
@@ -24,7 +25,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image');
+            $table->string('address')->nullable();
+            $table->integer('province_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('post_code')->nullable();
         });
     }
 };
