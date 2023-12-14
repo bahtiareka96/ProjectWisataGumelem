@@ -83,15 +83,33 @@
                         <h3>Provinsi</h3>
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                            {{-- {{ dd($daftarProvinsi) }} --}}
+                            <select id="mySelect">
+                                @foreach ($daftarProvinsi as $option)
+
+                                    <option value="{{ $option['province_id'] }}">{{ $option['province'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row pb-2">
                         <div class="col-sm">
                         <h3>Kota</h3>
                         </div>
-                        <div class="col-sm-5">
-                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
+                        <div id="kota" class="col-sm-5">
+
+                            {{-- $.each(optionsData, function(index, option) {
+                                // Create a new <option> element
+                                var newOption = $('<option>', {
+                                    value: option.value,
+                                    text: option.text
+                                });
+
+                                // Append the new <option> to the <select>
+                                selectElement.append(newOption);
+                            }); --}}
+
+                            {{-- <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required> --}}
                         </div>
                     </div>
                     <div class="row pb-2">
@@ -210,6 +228,23 @@
       tint: '#333',
       Xoffset: 15
     });
+
+    // $.ajax({
+    //     url: '{{}}',
+    //     type: 'GET',
+    //     data: {
+    //         key1: 'value1',
+    //         key2: 'value2'
+    //     },
+    //     success: function(response) {
+    //         // Handle success
+    //         console.log('Success:', response);
+    //     },
+    //     error: function(error) {
+    //         // Handle error
+    //         console.log('Error:', error);
+    //     }
+    // });
   });
 </script>
 <script>
@@ -263,6 +298,8 @@
         var total = expedition_price + product_price;
         total_price.value = total;
     }
+
+
 
 
     window.onload = function() {

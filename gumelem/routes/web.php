@@ -59,6 +59,7 @@ Route::get('/users/show/{id}', [UserController::class, 'show']);
 
 Route::put('/users/update/{id}', [UserController::class, 'update']) ;
 
+Route::get('/get-provinsi' ,[DetailMerchController::class, 'getProvince']);
 
 Route::resource('users', UserController::class)
     ->only('show','update','edit')

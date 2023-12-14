@@ -7,18 +7,19 @@ use App\Models\MerchandiseOrder;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class DetailMerchController extends Controller
 {
     public function index($id)
     {
         $item = MerchandiseOrder::with(['merchandise_galleries','user'])->findOrFail($id);
+        $daftarProvinsi = RajaOngkir::provinsi()->all();
+
         return view('pages.detailmerch',[
-            'item' => $item
+            'item' => $item,
+            'daftarProvinsi' => $daftarProvinsi
         ]);
-
-
-
     }
 
     // public function order(Request $request,$id)
@@ -96,5 +97,7 @@ class DetailMerchController extends Controller
         return view('pages.detailmerch');
     }
 
+    // public function getProvince(){
+            // }
 
 }
