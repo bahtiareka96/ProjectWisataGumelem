@@ -6,8 +6,20 @@
 
 @section('content')
    <!-- Main -->
-<section class="vh-100">
-  <div class="container py-5 h-100">
+<section class="section-details-header"></section>
+    <section class="section-details-content">
+    <div class="container">
+        <div class="row">
+        <div class="col p-0 pl-3 pl-lg-0">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+            </nav>
+        </div>
+        </div>
+    </div>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
@@ -42,21 +54,6 @@
                       <p class="text-muted">{{ $items->address }}</p>
                     </div>
                 </div>
-                <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Province</h6>
-                      <p class="text-muted">{{ $items->province_id }}</p>
-                    </div>
-                    <div class="col-6 mb-3">
-                      <h6>City</h6>
-                      <p class="text-muted">{{ $items->city_id }}</p>
-                    </div>
-                    <div class="col-6 mb-3">
-                        <h6>Postal Code</h6>
-                        <p class="text-muted">{{ $items->post_code }}</p>
-                      </div>
-                  </div>
-              </div>
             </div>
           </div>
         </div>

@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('address')->nullable();
-            $table->integer('province_id')->nullable();
-            $table->integer('city_id')->nullable();
-            $table->integer('post_code')->nullable();
         });
     }
 
@@ -26,9 +23,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('address')->nullable();
-            $table->integer('province_id')->nullable();
-            $table->integer('city_id')->nullable();
-            $table->integer('post_code')->nullable();
         });
     }
 };

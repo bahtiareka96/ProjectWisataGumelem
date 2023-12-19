@@ -11,8 +11,8 @@ class MerchandiseTransaction extends Model
     use SoftDeletes;
 
     protected $fillable= [
-        'merchandise_orders_id', 'users_id', 'email', 'address', 'expedition',
-        'quantity_order', 'price', 'expedition_price', 'total_price', 'status'
+        'merchandise_orders_id', 'users_id','weight', 'email','province_id','city_id', 'address', 'expedition',
+        'quantity_order', 'price', 'expedition_price', 'total_price', 'status', 'no_resi'
     ];
 
     protected $hidden = [];

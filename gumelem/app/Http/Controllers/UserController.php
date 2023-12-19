@@ -46,17 +46,6 @@ class UserController extends Controller
         $item = User::findOrFail($id);
 
         $item->update($data);
-
         return redirect()->route('users.show', $item);
     }
-
-    // public function store(UserRequest $request)
-    // {
-    //     $data = $request ->all();
-
-    //     User::create($data);
-    //     return redirect()->route('users.show');
-    // }
-
-
 }

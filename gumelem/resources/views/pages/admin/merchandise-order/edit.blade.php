@@ -36,6 +36,10 @@
                 <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="{{ $item->quantity }}">
             </div>
             <div class="form-group mt-2 mb-4">
+                <label for="title">Weight</label>
+                <input type="number" class="form-control" name="weight" placeholder="Weight" value="{{ $item->weight }}">
+            </div>
+            <div class="form-group mt-2 mb-4">
                 <label for="title">Price</label>
                 <input type="number" class="form-control" name="price" placeholder="Price" value="{{ $item->price }}">
             </div>

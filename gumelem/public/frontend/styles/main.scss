@@ -29,6 +29,8 @@ body {
     }
 }
 
+
+
 .navbar-nav {
     .nav-link {
         color: #ffff;
@@ -48,6 +50,20 @@ body {
         color: #ffff;
     }
 }
+
+.btn-drop {
+    text-align: center;
+    background-color: #036f2e;
+    color: #ffff;
+    &:hover {
+        background-color: #7B9242;
+        color: #ffff;
+    }
+}
+
+ul.dropdown-menu {
+    text-align: center
+  }
 
 
 //Header
@@ -925,20 +941,20 @@ footer {
     }
 }
 
-.gallery {
+.gallery-about {
     .xzoom-container-sm {
         display: block;
 
         .xzoom {
-        width: 100% !important;
-        height: 500px;
+        width: 1000px !important;
+        height: 600px;
         box-shadow: none;
         margin-bottom: 10px;
         }
 
         .xactive {
             border: 4px solid #243A36;
-            height: 100px;
+            height: 50px;
         }
     }
 }
@@ -995,8 +1011,9 @@ footer {
 
 //login page
 .page-login {
+     z-index: -1;
     height: 100vh;
-    background-image: url('../images/Background.jpg');
+    background-image: url('../images/Header@2x.jpg');
     background-size: cover;
 
     .logo {
@@ -1013,30 +1030,10 @@ footer {
             color: #fff;
         }
     }
-
-    // .section-left {
-    //     h1 {
-    //         font-family: "Playfair Display";
-    //         font-weight: bold;
-    //         font-size: 50px;
-    //         text-align: left;
-    //         color: #071c4d;
-    //     }
-    // }
-
-    // .section-right {
-    //     a {
-    //         font-family: Assistant;
-    //         font-weight: 300;
-    //         text-decoration: underline;
-    //         font-size: 16px;
-    //         text-align: center;
-    //         color: #bfbfbf;
-    //     }
-    // }
 }
 
 .page-register {
+     z-index: -1;
     height: 100vh;
     background-image: url('../images/Background.jpg');
     background-size: cover;
@@ -1055,27 +1052,79 @@ footer {
             color: #fff;
         }
     }
-
-    // .section-left {
-    //     h1 {
-    //         font-family: "Playfair Display";
-    //         font-weight: bold;
-    //         font-size: 50px;
-    //         text-align: left;
-    //         color: #071c4d;
-    //     }
-    // }
-
-    // .section-right {
-    //     a {
-    //         font-family: Assistant;
-    //         font-weight: 300;
-    //         text-decoration: underline;
-    //         font-size: 16px;
-    //         text-align: center;
-    //         color: #bfbfbf;
-    //     }
-    // }
 }
+
+.page-reset {
+    height: 100vh;
+    background-image: url('../images/Background.jpg');
+    background-size: cover;
+
+    .logorg {
+        height: 50px;
+        width: 120px;
+        text-align: center;
+    }
+
+    .btn-register {
+        background-color: #ff9e53;
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.container-email {
+    .card {
+        margin-top: 200px; // Adjust the top margin as needed
+    }
+
+    .card-header {
+        background-color:#036f2e; // Customize the background color
+        color: #ffffff; // Customize the text color
+    }
+
+    .card-body {
+        padding: 20px; // Adjust the padding as needed
+    }
+
+    .form-group {
+        margin-bottom: 20px; // Adjust the bottom margin for form groups
+    }
+
+    .form-control {
+        border-radius: 5px; // Customize the border radius
+    }
+
+    .btn-primary {
+        background-color:#036f2e; // Customize the primary button background color
+        border: 1px solid #243A36; // Customize the primary button border color
+    }
+
+    .btn-primary:hover {
+        background-color: #7B9242; // Customize the primary button hover color
+        border: 1px solid #7B9242; // Customize the primary button hover border color
+    }
+
+    // Media queries for responsiveness
+
+    @media (max-width: 576px) {
+        .card {
+            margin-top: 20px; // Adjust the top margin for smaller screens
+        }
+
+        .card-body {
+            padding: 10px; // Adjust the padding for smaller screens
+        }
+    }
+
+    @media (max-width: 768px) {
+        .form-group {
+            margin-bottom: 15px; // Adjust the bottom margin for medium-sized screens
+        }
+    }
+}
+
 
 

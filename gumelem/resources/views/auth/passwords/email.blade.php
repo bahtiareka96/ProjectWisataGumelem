@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('content')
-<div class="container">
+<div class="container-email">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -17,10 +17,10 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <div class="row-sm">
+                            <label for="email" class="col-sm col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-sm mb-3">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')

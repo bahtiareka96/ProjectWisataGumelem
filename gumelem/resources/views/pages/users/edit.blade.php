@@ -44,6 +44,10 @@
                         <input type="email" class="form-control" name="email" placeholder="Email" value="{{ $item->email }}">
                     </div>
                     <div class="form-group my-2 mx-4">
+                        <label for="title">Alamat</label>
+                        <textarea type="address" class="form-control" name="address" placeholder="Address" value="{{ $item->address }}"></textarea>
+                    </div>
+                    <div class="form-group my-2 mx-4">
                         <label for="title">Phone Number</label>
                         <input type="number" class="form-control" name="phone_number" placeholder="Phone Number" value="{{ $item->phone_number }}">
                     </div>

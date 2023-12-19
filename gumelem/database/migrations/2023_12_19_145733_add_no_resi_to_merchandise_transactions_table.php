@@ -9,18 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   // In the generated migration file
+    public function up()
     {
         Schema::table('merchandise_transactions', function (Blueprint $table) {
+            $table->string('no_resi')->nullable();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    // Add a down method if you want to rollback the migration
+    public function down()
     {
         Schema::table('merchandise_transactions', function (Blueprint $table) {
+            $table->dropColumn('no_resi');
         });
     }
+
 };

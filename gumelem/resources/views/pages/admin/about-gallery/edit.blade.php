@@ -21,7 +21,7 @@
 
     <div class="card shadow m-5">
         <div class="card-body">
-            <form action="{{ route('abou-gallery.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('about-gallery.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
              @csrf
              <div class="form-group my-2">

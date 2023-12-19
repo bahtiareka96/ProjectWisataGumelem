@@ -25,6 +25,7 @@
                                 <th>Biaya Ekspedisi</th>
                                 <th>Harga Total</th>
                                 <th>Status</th>
+                                <th>Nomor Resi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                 <td>{{ $item->expedition_price }}</td>
                                 <td>{{ $item->total_price }}</td>
                                 <td>{{ $item->status }}</td>
+                                <td>{{ $item->no_resi }}</td>
 
                                 <td>
                                     <a href="{{ route('merchandise-transaction.show', $item->id) }}" class="btn btn-info my-2">

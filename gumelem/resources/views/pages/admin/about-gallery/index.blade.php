@@ -33,10 +33,10 @@
                                     <img src="{{ Storage::url($item->image) }}" alt="" style="width: 150px" class="img-thumbnail"/>
                                 </td>
                                 <td>
-                                    <a href="{{ route('about-gallery.edit', $item -> id) }}" class="btn btn-info my-2">
+                                    <a href="{{ route('about-gallery.edit', $item->id) }}" class="btn btn-info my-2">
                                         <i class="fa fa-pencil-alt"></i>
                                     </a>
-                                    <form action="{{ route('about-gallery.destroy', $item -> id) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('about-gallery.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger">
