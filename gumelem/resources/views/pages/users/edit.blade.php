@@ -28,8 +28,6 @@
                 <div class="row g-0">
                   <div class="col-md-12 gradient-custom text-center text-black"
                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                      alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
                       <form action="{{ route('users.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                      @csrf
@@ -44,6 +42,10 @@
                     <div class="form-group my-2 mx-4">
                         <label for="title">Email</label>
                         <input type="email" class="form-control" name="email" placeholder="Email" value="{{ $item->email }}">
+                    </div>
+                    <div class="form-group my-2 mx-4">
+                        <label for="title">Alamat</label>
+                        <textarea type="address" class="form-control" name="address" placeholder="Address" value="{{ $item->address }}"></textarea>
                     </div>
                     <div class="form-group my-2 mx-4">
                         <label for="title">Phone Number</label>

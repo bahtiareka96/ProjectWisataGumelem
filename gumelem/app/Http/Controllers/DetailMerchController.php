@@ -13,18 +13,74 @@ use Validator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class DetailMerchController extends Controller
 {
     public function index($id)
     {
         $item = MerchandiseOrder::with(['merchandise_galleries','user'])->findOrFail($id);
+        $daftarProvinsi = RajaOngkir::provinsi()->all();
+
+
         return view('pages.detailmerch',[
-            'item' => $item
+            'item' => $item,
+            'daftarProvinsi' => $daftarProvinsi
         ]);
+    }
 
+    public function getKota($id){
+        $listKota = RajaOngkir::kota()->dariProvinsi($id)->get();
 
+        return $listKota;
+    }
 
+    public function biayaPengiriman(Request $request){
+        // return $request->courier;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+
+        CURLOPT_POSTFIELDS => "origin=37&destination=$request->kota&weight=$request->weight&courier=$request->courier",
+        CURLOPT_HTTPHEADER => array(
+            "content-type: application/x-www-form-urlencoded",
+            "key:" . env('RAJAONGKIR_API_KEY')
+        ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            // Handle cURL error
+            return response()->json(['error' => "cURL Error #:" . $err], 500);
+        } else {
+            // Decode the JSON response
+            $responseData = json_decode($response, true);
+
+            // Check if the response indicates an error
+            if (isset($responseData['error'])) {
+                // Set the appropriate HTTP status code for an error
+                return response()->json($responseData, 500);
+            }
+
+            // Return the successful response
+            return response()->json($responseData);
+        }
+
+        $responseData = json_decode($response, true);
+
+        return response()->json($responseData);
     }
 
     public function process(Request $request, $id)
@@ -62,7 +118,7 @@ class DetailMerchController extends Controller
             ]);
 
             // return response()->json([
-            //     'success' => 'Pesanan berhasil diproses', 
+            //     'success' => 'Pesanan berhasil diproses',
             // ]);
 
             $invoice = new Invoice;
@@ -73,7 +129,7 @@ class DetailMerchController extends Controller
             $invoice->status = $transaction->status;
             $invoice->save();
 
-            
+
             $snapToken = null;
             if ($transaction->status == 'PENDING') {
                 // Parameter transaksi Midtrans
@@ -113,7 +169,7 @@ class DetailMerchController extends Controller
             }
 
             return response()->json([
-                'success' => 'Pesanan berhasil diproses', 
+                'success' => 'Pesanan berhasil diproses',
                 'snapToken' => $snapToken
             ]);
         } catch (\Throwable $th) {
@@ -182,23 +238,23 @@ class DetailMerchController extends Controller
     {
         // Mendapatkan data dari request
         $data = $request->all();
-    
+
         // Contoh: Ambil order_id, status transaksi, dan data lainnya dari data request
         $order_id = $data['order_id'] ?? null; // Gunakan null coalescing operator
         $transaction_status = $data['transaction_status'] ?? null;
-    
+
         // // Contoh: Ambil informasi tambahan untuk invoice
         // $item_name = $data['item_name'] ?? 'Default Item Name'; // Ganti 'Default Item Name' sesuai kebutuhan
         // $quantity = $data['quantity'] ?? 0; // Gunakan default value jika key tidak ada
         // $total_price = $data['total_price'] ?? 0;
-    
+
         // Ambil transaksi berdasarkan order_id
         $transaction = MerchandiseTransaction::where('id', $order_id)->first();
-    
+
         if (!$transaction) {
             return response()->json(['message' => 'Transaction not found'], 404);
         }
-    
+
         // Membuat atau memperbarui invoice berdasarkan data transaksi
         $invoice = Invoice::updateOrCreate(
             ['merchandise_transaction_id' => $transaction->id],
@@ -209,17 +265,17 @@ class DetailMerchController extends Controller
                 'status' => $this->mapTransactionStatus($transaction_status)
             ]
         );
-    
+
         // Simpan perubahan status transaksi
         $transaction->status = $this->mapTransactionStatus($transaction_status);
         $transaction->save();
 
         
-    
+
         // Return response
         return response()->json(['message' => 'Callback processed successfully']);
     }
-    
+
     // Fungsi bantuan untuk memetakan status transaksi Midtrans ke status aplikasi Anda
     protected function mapTransactionStatus($status)
     {
@@ -240,18 +296,13 @@ class DetailMerchController extends Controller
                 return 'UNKNOWN';
         }
     }
-    
+
 
 
     public function remove(Request $request, $merchandise_orders_id)
     {
         return view('pages.detailmerch');
     }
-
-    // public function create(Request $request, $id)
-    // {
-    //     return view('pages.detailmerch');
-    // }
 
     public function success(Request $request, $id)
     {
@@ -261,6 +312,4 @@ class DetailMerchController extends Controller
         $transactionSuccess->save();
         return view('pages.detailmerch');
     }
-
-
 }

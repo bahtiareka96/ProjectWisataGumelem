@@ -35,6 +35,10 @@
                         <option value="CANCEL">CANCEL</option>
                         <option value="FAILED">FAILED</option>
                     </select>
+                    <label for="no_resi">Nomor Resi</label>
+                    <div class="form-group my-2">
+                        <input type="text" class="form-control" name="no_resi" placeholder="Nomor Resi" value="{{ $item->no_resi }}">
+                    </div>
                 </div>
             <button type="submit" class="btn btn-primary btn-block mt-4">
                 Ubah

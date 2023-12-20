@@ -27,7 +27,7 @@
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>{{ errror }}</li>
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <td colspan="2">Produk</td>
+                                <td class="" colspan="2">Berat</td>
                                 <td>Jumlah</td>
                             </tr>
                         </thead>
@@ -49,6 +50,13 @@
                                     <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="60">
                                 </td>
                                 <td class="align-middle">{{ $item->title }}</td>
+                                <td class="align-middle text-end">g</td>
+                                <td class="align-middle text-start" id="td-weight" >
+                                    {{ $item->weight }}
+                                    </td>
+
+
+
                                 <td class="align-middle">
                                     <input class="num" onKeyDown="return false" min="1" max="{{ $item->quantity }}" onchange="handleQty(this.value)" type="number" value="1" name="quantity_order">
                                 </td>
@@ -58,6 +66,11 @@
                     </table>
                 </div>
                 <h2>Pengiriman dan pembayaran</h2>
+                {{-- <input type="number" id="weight" name="weight" value="1000" hidden> --}}
+                <div id="weight-input">
+                    <input type="number" name="weight" value="{{ $item->weight }}"  hidden>
+                </div>
+
                 <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Email</h3>
@@ -68,54 +81,115 @@
                 </div>
                 <div class="row pb-2">
                     <div class="col-sm">
-                    <h3>Alamat</h3>
+                    <h3>Nomor Hp</h3>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required>
-                    </div>
+                    <input type="number" class="no-outline text-center" name="phone_number" placeholder="Phone Number" value="{{ Auth::user()->phone_number }}" readonly>
                 </div>
-                <div class="row pb-2">
-                    <div class="col-sm">
-                    <h3>Pengiriman</h3>
+                </div>
+
+                <div class="card card-payment-details">
+                    <h2>Atur Alamat dan Pengiriman</h2>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Provinsi</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            {{-- {{ dd($daftarProvinsi) }} --}}
+                            <select class="form-select form-select-md mb-3" id="province" name="province" onchange="getKota(this.value)">
+                                <option value=""> Pilih Provinsi</option>
+                                @foreach ($daftarProvinsi as $option)
+
+                                    <option value="{{ $option['province_id'] }}" >{{ $option['province'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-sm-5">
-                        <input type="text" class="no-outline text-center" name="expedition" placeholder="Pengiriman" value="REGULAR" readonly>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Kota</h3>
+                        </div>
+                        <div id="kota1212" class="col-sm-5">
+                            <select class="form-select form-select-md mb-3" id="kota"  name="kota">
+                                <option value=""> Pilih Kota</option>
+                            </select>
+
+
+                            {{-- <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required> --}}
+                        </div>
                     </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Alamat</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ Auth::user()->address }}">
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Pengiriman</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <select class="form-select form-select-md mb-3" name="courier" id="courier" onchange="getBiayaPengiriman()" id="">
+                                <option value=""> Pilih Courier</option>
+                                <option value="tiki"> Pilih TIKI</option>
+                                <option value="jne"> Pilih JNE</option>
+                                <option value="pos"> Pilih POS</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row pb-2">
+                        <div class="col-sm">
+                        <h3>Type Pengiriman</h3>
+                        </div>
+                        <div class="col-sm-5">
+                            <select class="form-select form-select-md mb-3" name="type-pengiriman" onchange="handleChangeType()" id="type-pengiriman">
+                            </select>
+                        </div>
+                    </div>
+                    <a class="btn btn-join-now ml-2" id="btn-ongkir" onclick="getOngkir()">Generate Ongkir</a>
                 </div>
                 <hr class="hr" />
                 <h2>Ringkasan Pembelian</h2>
-                <div class="row pb-2">
+                <div class="row">
                     <div class="col-sm">
-                    <h3>Harga</h3>
+                        <h3 class="mb-3 mb-sm-0">Harga</h3>
                     </div>
-                    <div class="col-sm total">
-                        <a class="text-currency">Rp.</a>
-                      <input class="no-outline text-right" value="{{ $item->price  }}"  type="currency" id="price" name="price" readonly>
-                      <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden >
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <span class="input-group-text text-currency no-outline bg-white">Rp.</span>
+                            <input class="form-control text-right no-outline" value="{{ $item->price }}" type="text" id="price" name="price" readonly>
+                            <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden>
+                        </div>
                     </div>
                 </div>
-                <div class="row pb-2">
+
+                <div class="row mt-3">
                     <div class="col-sm">
-                    <h3>Ongkos Kirim</h3>
+                        <h3 class="mb-3 mb-sm-0">Ongkos Kirim</h3>
                     </div>
                     <div class="col-sm">
-                        <a class="text-currency">Rp.</a>
-                        <input type="text" class="no-outline text-right" name="expedition_price" id="expedition_price" placeholder="Harga Pengiriman" value="5000" readonly>
+                        <div class="input-group">
+                            <span class="input-group-text text-currency no-outline bg-white">Rp.</span>
+                            <input type="text" class="form-control text-right no-outline" name="expedition_price" id="expedition_price" value="" readonly>
+
+                        </div>
                     </div>
                 </div>
+
                 <hr class="hr" />
                 <div class="row">
                     <div class="col-sm">
                         <h2>Total Biaya</h2>
                     </div>
                     <div class="col-sm">
-                        <a class="text-currency">Rp.</a>
-                        <input class="no-outline text-right" value="{{ $item->total_price  }}"  type="currency" id="total_price" name="total_price" readonly>
+                        <div class="input-group">
+                            <span class="input-group-text text-currency no-outline bg-white">Rp.</span>
+                        <input class="form-control text-right no-outline" value="{{ $item->total_price  }}"  type="currency" id="total_price" name="total_price" readonly>
+                        </div>
                     </div>
-                </div>
-                <hr class="hr" />
-                <div class="row py-1 text-center">
-                    <h5>Informasi lebih lanjut akan dikirimkan melalui email</h5>
                 </div>
                 <hr class="hr" />
                 <div class="join-container">
@@ -205,52 +279,135 @@
       tint: '#333',
       Xoffset: 15
     });
+
+    $('#currency-ongkir').hide()
   });
-</script>
-<script>
+
   $(window).scroll(function() {
     var offset = $(window).scrollTop();
-    console.log(offset);
     $('.navbar').toggleClass('trans', offset < 50);
   });
-</script>
-{{-- <script>
-    const plus = document.querySelector(".plus"),
-    minus = document.querySelector(".minus"),
-    num  = document.querySelector(".num");
 
-    let a = 1;
-
-    plus.addEventListener("click" , () => {
-      a++;
-      a = (a < 10) ? "0" + a : a;
-      num.innerText = a;
-      console.log(a);
-    });
-
-    minus.addEventListener("click" , () => {
-      if(a>1){
-        a--;
-        a = (a < 10) ? "0" + a : a;
-        num.innerText = a;
-        console.log(a);
-      }
-    });
-  </script> --}}
-
-<script>
     var defaultPrice = document.getElementById('defaultPrice');
     var price = document.getElementById('price');
     var total_price = document.getElementById('total_price');
     var expeditionPrice = document.getElementById('expedition_price');
+    var weight = document.getElementById('weight');
+    var defaultWeight = {!! $item->weight !!}
+    console.log(defaultWeight);
 
-    function handleQty(e){
-        console.log(e);
+
+    function handleQty(e) {
+        var divWeight = document.getElementById('weight-input')
+
+        var defaultPrice = document.getElementById('defaultPrice');
+
+        var price = document.getElementById('price');
+        var tdweight = document.getElementById('td-weight');
+        console.log('Weight:', weight);
         var hasil = e * parseFloat(defaultPrice.value);
-        console.log(hasil);
+        var hasilWeight = defaultWeight * e;
+
+        tdweight.innerHTML = hasilWeight;
         price.value = hasil;
+
+
+        divWeight.innerHTML = '<input type="number" id="weight" name="weight" value="'+ hasilWeight +'"  hidden>'
+        // weight.value = hasilWeight;
+        console.log(hasilWeight);
         updateTotal();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function handleChangeType(){
+        $('#btn-ongkir').show();
+        $('#expedition_price').val('');
+
+    }
+
+    function getOngkir(){
+        var selectedOption  = $('#type-pengiriman').find(':selected');
+
+        var dataHargaValue = selectedOption.data('harga');
+        $('#currency-ongkir').show()
+        $('#btn-ongkir').hide();
+        $('#expedition_price').val(dataHargaValue)
+        // $('#btn-ongkir').html('<p> '+  +' </p>');
+        updateTotal();
+
+    }
+
+
+    function getKota(e){
+        $.ajax({
+            url: "/get-kota/"+e,
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+                // Handle the response data
+
+                $.each(response, function(index, value) {
+
+                    $('#kota').append(' <option value="' + value.city_id + '">' + value.city_name + '</option>');
+                });
+            },
+            error: function(error) {
+            }
+        });
+    }
+
+    function getBiayaPengiriman(){
+        var valKota     = $('#kota').val()
+        // var valProvince = $('#province').val()
+        var valCourier = $('#courier').val()
+
+        var valWeight = $('#weight').val()
+
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        var param = {
+            kota : valKota,
+            courier : valCourier,
+            weight :valWeight
+        }
+
+        $.ajax({
+            url: "/get-biaya-pengiriman",
+            type: "POST",
+            data: param,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            dataType: "json",
+            success: function(response) {
+
+                // id="type-pengiriman"
+                $.each(response.rajaongkir.results[0].costs, function(index, value) {
+                    $('#type-pengiriman').append(' <option data-harga='+ value.cost[0].value +' value="' + value.service + '">' + value.service + '(' + value.cost[0].value + ')' + '</option>');
+                });
+
+            },
+            error: function(error) {
+                // Handle the error here
+            }
+        })
+    }
+
+
 
     function updateTotal() {
         var expedition_price = parseFloat(expeditionPrice.value);
@@ -260,28 +417,10 @@
     }
 
 
-    window.onload = function() {
-        updateTotal();
-    };
+    function handleTotal(){
+        var expedition_price = parseFloat(expeditionPrice.value)
+        return expedition_price
+    }
 
-
-    // let a = 1;
-    // var defaultPrice = document.getElementById('defaultPrice');
-    // var price = document.getElementById('price');
-    // var expeditionPrice = document.getElementById('expedition_price')
-    // var total_price = document.getElementById('total_price')
-    // function handleQty(e){
-
-    //     console.log(e)
-    //     var hasil = e * defaultPrice.value
-    //     console.log(hasil)
-    //     price.value = hasil + handleTotal()
-    // }
-
-    // function handleTotal(){
-    //     var expedition_price = parseFloat(expeditionPrice.value)
-    //     return expedition_price
-    // }
 </script>
 @endpush
-

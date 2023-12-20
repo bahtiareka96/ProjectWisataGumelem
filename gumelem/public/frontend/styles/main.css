@@ -41,6 +41,20 @@ body {
   color: white;
 }
 
+.btn-drop {
+  text-align: center;
+  background-color: #036f2e;
+  color: white;
+}
+.btn-drop:hover {
+  background-color: #7B9242;
+  color: white;
+}
+
+ul.dropdown-menu {
+  text-align: center;
+}
+
 header {
   padding: 300px 0 300px;
   z-index: -1;
@@ -737,18 +751,18 @@ footer .section-footer {
   float: left;
 }
 
-.gallery .xzoom-container-sm {
+.gallery-about .xzoom-container-sm {
   display: block;
 }
-.gallery .xzoom-container-sm .xzoom {
-  width: 100% !important;
-  height: 500px;
+.gallery-about .xzoom-container-sm .xzoom {
+  width: 1000px !important;
+  height: 600px;
   box-shadow: none;
   margin-bottom: 10px;
 }
-.gallery .xzoom-container-sm .xactive {
+.gallery-about .xzoom-container-sm .xactive {
   border: 4px solid #243A36;
-  height: 100px;
+  height: 50px;
 }
 
 .wrapper {
@@ -795,8 +809,9 @@ footer .section-footer {
 }
 
 .page-login {
+  z-index: -1;
   height: 100vh;
-  background-image: url("../images/Background.jpg");
+  background-image: url("../images/Header@2x.jpg");
   background-size: cover;
 }
 .page-login .logo {
@@ -813,6 +828,7 @@ footer .section-footer {
 }
 
 .page-register {
+  z-index: -1;
   height: 100vh;
   background-image: url("../images/Background.jpg");
   background-size: cover;
@@ -828,4 +844,60 @@ footer .section-footer {
 }
 .page-register .btn-register:hover {
   color: #fff;
+}
+
+.page-reset {
+  height: 100vh;
+  background-image: url("../images/Background.jpg");
+  background-size: cover;
+}
+.page-reset .logorg {
+  height: 50px;
+  width: 120px;
+  text-align: center;
+}
+.page-reset .btn-register {
+  background-color: #ff9e53;
+  color: #fff;
+}
+.page-reset .btn-register:hover {
+  color: #fff;
+}
+
+.container-email .card {
+  margin-top: 200px;
+}
+.container-email .card-header {
+  background-color: #036f2e;
+  color: #ffffff;
+}
+.container-email .card-body {
+  padding: 20px;
+}
+.container-email .form-group {
+  margin-bottom: 20px;
+}
+.container-email .form-control {
+  border-radius: 5px;
+}
+.container-email .btn-primary {
+  background-color: #036f2e;
+  border: 1px solid #243A36;
+}
+.container-email .btn-primary:hover {
+  background-color: #7B9242;
+  border: 1px solid #7B9242;
+}
+@media (max-width: 576px) {
+  .container-email .card {
+    margin-top: 20px;
+  }
+  .container-email .card-body {
+    padding: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .container-email .form-group {
+    margin-bottom: 15px;
+  }
 }/*# sourceMappingURL=main.css.map */

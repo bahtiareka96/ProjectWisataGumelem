@@ -22,6 +22,7 @@
                                 <th>Title</th>
                                 <th>About</th>
                                 <th>Quantity</th>
+                                <th>Weight</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
@@ -33,6 +34,7 @@
                                 <td>{{ $item -> title }}</td>
                                 <td>{{ $item -> about }}</td>
                                 <td>{{ $item -> quantity }}</td>
+                                <td>{{ $item -> weight }}</td>
                                 <td>{{ $item -> price }}</td>
                                 <td>
                                     <a href="{{ route('merchandise-order.edit', $item -> id) }}" class="btn btn-info my-2">

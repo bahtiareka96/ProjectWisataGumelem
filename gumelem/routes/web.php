@@ -10,6 +10,9 @@ use App\Http\Controllers\Admin\ObjekWisataController;
 use App\Http\Controllers\Admin\AboutGalleryController;
 use App\Http\Controllers\HistoryTransactionController;
 use App\Http\Controllers\Admin\WisataGalleryController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\DetailMerchController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +20,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +32,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::post('/custom_login', [AuthController::class, 'login'])->name('custom_login');
 
 Route::get('/', [HomeController::class, 'index']) -> name('home');
 
@@ -42,6 +47,8 @@ Route::post('/detailtransaction/{id}', [DetailMerchController::class, 'process']
 Route::get('/detailmerch/{id}', [DetailMerchController::class, 'index'])
     -> name('detailmerch')
     -> middleware(['auth', 'verified']);
+
+
 
 // Route::get('/detailmerch/confirm/{id}', [DetailMerchController::class, 'success'])
 //     -> name('detailmerch-success')
@@ -59,6 +66,9 @@ Route::get('/users/show/{id}', [UserController::class, 'show']);
 
 Route::put('/users/update/{id}', [UserController::class, 'update']) ;
 
+Route::get('/get-provinsi' ,[DetailMerchController::class, 'getProvince']);
+Route::get('/get-kota/{id}', [DetailMerchController::class, 'getKota'])->name('get-kota');
+Route::post('/get-biaya-pengiriman', [DetailMerchController::class, 'biayaPengiriman']);
 
 Route::resource('users', UserController::class)
     ->only('show','update','edit')
@@ -88,3 +98,8 @@ Route::prefix('admin')
     });
 
 Auth::routes(['verify' => true]);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CouriersTableSeeder;
+use Database\Seeders\LocationsTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {

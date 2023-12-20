@@ -20,14 +20,15 @@
          </div>
        </div>
        <div class="row">
-         <div class="col-lg-12 pl-lg-0">
+         <div class="col-md-10 mx-auto">
            <div class="card card-details">
              <h1>{{ $dataAbout->title }}</h1>
              @if ($dataAbout->about_galleries->count())
-                <div class="gallery">
+                <div class="gallery-about">
                     <div class="xzoom-container-sm" style="text-align: center">
                       <img
                         height="400px"
+                        width="400px"
                         class="xzoom mb-2"
                         id="xzoom-default"
                         src="{{ Storage::url($dataAbout->about_galleries->first()->image) }}"
@@ -38,7 +39,8 @@
                             <a href="{{ Storage::url($gallery->image) }}"
                                 ><img
                                 class="xzoom-gallery"
-                                width="128"
+                                width="100px"
+                                height="100px"
                                 src="{{ Storage::url($gallery->image) }}"
                                 xpreview="{{ Storage::url($gallery->image) }}"/>
                             </a>

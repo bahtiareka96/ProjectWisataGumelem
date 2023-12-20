@@ -79,8 +79,8 @@
                       <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden >
                     </div>
                   </div>
-                 <a type="button" class="btn btn-block btn-join-now mt-3 py-2" href="{{ route('detailmerch', $item->id) }}">
-                    Bayar
+                 <a type="button" class="btn btn-block btn-join-now " href="{{ route('detailmerch', $item->id) }}">
+                    Beli
                  </a>
                {{-- </form> --}}
             @endauth

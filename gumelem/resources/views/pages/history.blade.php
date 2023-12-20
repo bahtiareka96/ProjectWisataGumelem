@@ -33,12 +33,17 @@
             @forelse ($item as $item)
         <div class="card card-payment-details my-2">
                     <div class="row g-2">
-                        <div class="col-2">
+                        <div class="col-3">
                             <div class="title p-8 no-border text-center">
                                 ID Transaksi  : {{ $item->id }}
                             </div>
                         </div>
-                        <div class="col-10">
+                        <div class="col-4">
+                            <div class="image p-8  no-border text-end">
+                                {{ $item->no_resi }}
+                            </div>
+                        </div>
+                        <div class="col-4">
                             <div class="image p-8  no-border text-end">
                                 {{ $item->status }}
                             </div>
@@ -48,7 +53,7 @@
                     <div class="row g-2">
                         <div class="col-4 my-2">
                             <div class="image p-4 no-border text-center">
-                                <img src="{{ Storage::url($item->merchandise_galleries->first()->image) }}" height="70">
+                                <img src="{{ Storage::url($item->merchandise_order->first()->image) }}" height="70">
                             </div>
                         </div>
                         <div class="col-4 my-auto">
@@ -177,7 +182,6 @@
             </td>
         </tr>
         @endforelse
-
       </div>
     </div>
   </div>

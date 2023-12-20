@@ -53,8 +53,8 @@
                   Profile
                 </a>
                 <ul class="dropdown-menu mx-2">
-                  <li><a class="dropdown-item" href="{{ url('/users/'.  Auth::id()) }}">User Profile</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="{{ url('/users/'.  Auth::id()) }}">User Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('history', Auth::user()->id) }}">History</a></li>
                   <li><form class="dropdown-item" action="{{ url('logout') }}" method="POST">
                     @csrf
                     <button class="btn btn-login my-2 my-sm-0" type="submit">
@@ -68,8 +68,7 @@
 
 
               <div class="dropdown mx-my-2 my-lg-0 d-none d-md-block">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Profile
+                <a class="btn btn-drop bi-list" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" style="margin-right: 10px">
                   <li><a class="dropdown-item" href="{{ url('/users/'.  Auth::id()) }}">User Profile</a></li>

@@ -33,6 +33,10 @@
                 <input type="number" class="form-control" name="quantity" placeholder="Quantity" value="{{ old('quantity') }}">
             </div>
             <div class="form-group mt-2 mb-4">
+                <label for="title">Weight</label>
+                <input type="number" class="form-control" name="weight" placeholder="Weight" value="{{ old('weight') }}">
+            </div>
+            <div class="form-group mt-2 mb-4">
                 <label for="title">Price</label>
                 <input type="number" class="form-control" name="price" placeholder="Price" value="{{ old('price') }}">
             </div>

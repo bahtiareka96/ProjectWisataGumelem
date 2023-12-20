@@ -6,8 +6,20 @@
 
 @section('content')
    <!-- Main -->
-<section class="vh-100">
-  <div class="container py-5 h-100">
+<section class="section-details-header"></section>
+    <section class="section-details-content">
+    <div class="container">
+        <div class="row">
+        <div class="col p-0 pl-3 pl-lg-0">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+            </nav>
+        </div>
+        </div>
+    </div>
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
@@ -18,8 +30,8 @@
                 alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
               <h5>{{ $items->name }}</h5>
               <p>{{ $items->username }}</p>
-                <a href="{{ route('users.edit',$items->id) }}" class="d-none d-sm-inline-block btn btn-sm shadow-sm">
-                    <i class="bi bi-pencil-square" style="color: #000000;"></i>
+                <a href="{{ route('users.edit',$items->id) }}" class="d-sm-inline-block btn btn-sm shadow-sm mb-5 bg-dark">
+                    <i class="bi bi-pencil-square mx-2 my-2" style="color:white;"></i>
                 </a>
             </div>
             <div class="col-md-8">
@@ -36,24 +48,12 @@
                     <p class="text-muted">{{ $items->phone_number }}</p>
                   </div>
                 </div>
-                <h6>Projects</h6>
-                <hr class="mt-0 mb-4">
                 <div class="row pt-1">
-                  <div class="col-6 mb-3">
-                    <h6>Recent</h6>
-                    <p class="text-muted">Lorem ipsum</p>
-                  </div>
-                  <div class="col-6 mb-3">
-                    <h6>Most Viewed</h6>
-                    <p class="text-muted">Dolor sit amet</p>
-                  </div>
+                    <div class="col-6 mb-3">
+                      <h6>Address</h6>
+                      <p class="text-muted">{{ $items->address }}</p>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-start">
-                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('custom_login') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -91,7 +91,7 @@
                     class="logo mb-4"
                   />
                 </div>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('custom_login') }}">
                 @csrf
                   <div class="form-group mb-3 mx-4">
                     <label for="exampleInputEmail1">Email address</label>
