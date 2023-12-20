@@ -30,4 +30,9 @@ class MerchandiseTransaction extends Model
     }
 
     use HasFactory;
+
+    public function callbacks()
+    {
+        return $this->hasMany(CallbackMidtrans::class, 'trx_order');
+    }
 }

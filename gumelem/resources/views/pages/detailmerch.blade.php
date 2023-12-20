@@ -33,7 +33,7 @@
                 </div>
             @endif
             <h2>Produk</h2>
-            <form action="{{ route('detailmerch_process', $item->id) }}" method="POST">
+            <form id="formTrx" action="{{ route('detailmerch_process', $item->id) }}" method="POST" data-item-id="{{ $item->id }}">
                 @csrf
                 <div class="product">
                     <table class="table table-responsive-sm-lg text-center">
@@ -119,9 +119,7 @@
                 </div>
                 <hr class="hr" />
                 <div class="join-container">
-                    <button type="submit" class="btn btn-block btn-join-now mt-3 py-2"
-                    >Bayar
-                    </button>
+                    <button type="button" id="payment-button" class="btn btn-block btn-join-now mt-3 py-2">Bayar</button>
                 </div>
             </form>
         </div>
@@ -138,6 +136,65 @@
 @endpush
 
 @push('addon-script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+<script>
+  $(document).ready(function() {
+    $('#payment-button').click(function(event) {
+      event.preventDefault();
+
+      var formElement = $('#formTrx')[0];
+      var formData = new FormData(formElement);
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ': ' + pair[1]);
+      }
+
+      $.ajax({
+        url: '/detailtransaction/' + formElement.dataset.itemId,
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+          console.log('snap', data)
+          if (data.snapToken) {
+            snap.pay(data.snapToken, {
+              onSuccess: function(result) {
+                console.log('sukses');
+                alert('Pembayaran berhasil! Status: ' + result.status_message);
+                // Opsional: Submit form atau lakukan tindakan lain
+                 window.location.href = '/';
+              },
+              onPending: function(result) {
+                console.log('pending');
+                alert('Pembayaran tertunda. Status: ' + result.status_message);
+                // Opsional: Lakukan tindakan untuk pembayaran tertunda
+              },
+              onError: function(result) {
+                console.log('salah');
+                alert('Terjadi kesalahan. Status: ' + result.status_message);
+                // Opsional: Lakukan tindakan untuk error pembayaran
+              },
+              onClose: function() {
+                console.log('tutup');
+                alert('Anda menutup jendela pembayaran.');
+                // Opsional: Lakukan tindakan ketika pengguna menutup modal pembayaran
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('error');
+          alert('Terjadi kesalahan saat mengirim data: ' + error.responseText);
+        }
+      });
+
+      console.log('hit');
+    });
+  });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ url('frontend/libraries/xzoom/xzoom.min.js') }}"></script>
 <script>

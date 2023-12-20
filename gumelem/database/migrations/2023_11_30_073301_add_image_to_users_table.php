@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->softDeletes();
-            $table->timestamps();
         });
     }
 
