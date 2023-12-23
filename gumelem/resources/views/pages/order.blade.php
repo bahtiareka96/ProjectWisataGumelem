@@ -45,7 +45,7 @@
                       </div>
                     </div>
                     <h2>Tentang Wisata</h2>
-                    <p>
+                    <p style="text-align: justify;">
                         {!! $item->about !!}
                     </p>
                   </div>
@@ -57,39 +57,40 @@
           <h2>Detail Produk</h2>
           <div class="join-container">
             @auth
-               {{-- <form action="{{ route('detailmerch_process') }}" method="POST">
-                @csrf --}}
                 <div class="row pb-2">
                     <div class="col-sm">
-                      <h3>Stok Barang</h3>
+                        <h3>Stok Barang</h3>
                     </div>
                     <div class="col-sm-lg quanti">
-                      <div class="wrapper wrapper-1">
-                        <a class="num" >{{ $item->quantity }}</a>
-                      </div>
+                        <div class="wrapper wrapper-1">
+                            <a class="num">{{ $item->quantity }}</a>
+                        </div>
                     </div>
-                  </div>
-                  <div class="row pb-2">
+                </div>
+                <div class="row pb-2">
                     <div class="col-sm">
-                      <h3>Harga</h3>
+                        <h3>Harga</h3>
                     </div>
                     <div class="input-group-sm-lg total">
                         <a class="text-currency">Rp.</a>
-                      <input class="no-outline text-right" value="{{ $item->price  }}"  type="currency" id="price" name="price" readonly>
-                      <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden >
+                        <input class="no-outline text-right" value="{{ $item->price }}" type="currency" id="price" name="price" readonly>
+                        <input type="text" value="{{ $item->price }}" id="defaultPrice" hidden>
                     </div>
-                  </div>
-                 <a type="button" class="btn btn-block btn-join-now " href="{{ route('detailmerch', $item->id) }}">
-                    Beli
-                 </a>
-               {{-- </form> --}}
+                </div>
+                @if ($item->quantity > 0)
+                    <a type="button" class="btn btn-block btn-join-now" href="{{ route('detailmerch', $item->id) }}">
+                        Beli
+                    </a>
+                @else
+                    <button type="button" class="btn btn-block btn-join-now" disabled>
+                        Habis
+                    </button>
+                @endif
             @endauth
             @guest
-                <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2"
-                    >Masuk untuk melanjutkan
-                </a>
+                <a href="{{ route('login') }}" class="btn btn-block btn-join-now mt-3 py-2">Masuk untuk melanjutkan</a>
             @endguest
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -123,54 +124,5 @@
     $('.navbar').toggleClass('trans', offset < 50);
   });
 </script>
-  {{-- <script>
-    const plus = document.querySelector(".plus"),
-    minus = document.querySelector(".minus"),
-    num  = document.querySelector(".num");
-
-    let a = 1;
-
-    plus.addEventListener("click" , () => {
-      a++;
-      a = (a < 10) ? "0" + a : a;
-      num.innerText = a;
-      console.log(a);
-    });
-
-    minus.addEventListener("click" , () => {
-      if(a>1){
-        a--;
-        a = (a < 10) ? "0" + a : a;
-        num.innerText = a;
-        console.log(a);
-      }
-    });
-  </script> --}}
-  {{-- <script>
-
-    let a = 1;
-    var defaultPrice = document.getElementById('defaultPrice');
-    var price = document.getElementById('price');
-    function handleQty(e){
-
-        console.log(e)
-        var hasil = e*defaultPrice.value
-        console.log(hasil)
-        price.value = hasil
-    // if (e == 'plus') {
-    //     a++;
-    //     a = (a < 10) ? "0" + a : a;
-    //     num.innerText = a;
-    //     console.log(a);
-    // }else{
-    //     if(a>1){
-    //         a--;
-    //         a = (a < 10) ? "0" + a : a;
-    //         num.innerText = a;
-    //         console.log(a);
-    //     }
-    // }
-}
-  </script> --}}
 @endpush
 

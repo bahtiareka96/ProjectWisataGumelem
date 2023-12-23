@@ -48,7 +48,7 @@
                       </div>
                     </div>
                     {{-- <h2>Tentang Wisata</h2> --}}
-                    <p>
+                    <p style="text-align: justify;">
                         {!! $dataAbout->about !!}
                     </p>
                   </div>

@@ -14,7 +14,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('home') }}">Merchandise</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('order', $item->slug) }}">Merchandise</a></li>
             <li class="breadcrumb-item active" aria-current="page">Checkout</li>
           </ol>
         </nav>
@@ -53,7 +53,8 @@
                                 <td class="align-middle text-end">g</td>
                                 <td class="align-middle text-start" id="td-weight" >
                                     {{ $item->weight }}
-                                    </td>
+                                 </td>
+                                 {{-- {{ dd($item->weight) }} --}}
 
 
 
@@ -65,12 +66,10 @@
                         </tbody>
                     </table>
                 </div>
-                <h2>Pengiriman dan pembayaran</h2>
-                {{-- <input type="number" id="weight" name="weight" value="1000" hidden> --}}
                 <div id="weight-input">
-                    <input type="number" name="weight" value="{{ $item->weight }}"  hidden>
+                    <input type="number" id="weight" name="weight" value="{{ $item->weight }}"  hidden>
                 </div>
-
+                <h2>Pengiriman dan pembayaran</h2>
                 <div class="row pb-2">
                     <div class="col-sm">
                     <h3>Email</h3>
@@ -96,7 +95,7 @@
                         </div>
                         <div class="col-sm-5">
                             {{-- {{ dd($daftarProvinsi) }} --}}
-                            <select class="form-select form-select-md mb-3" id="province" name="province" onchange="getKota(this.value)">
+                            <select class="form-select form-select-md mb-3" id="province" name="province" onchange="getKota(this.value)" required>
                                 <option value=""> Pilih Provinsi</option>
                                 @foreach ($daftarProvinsi as $option)
 
@@ -110,11 +109,9 @@
                         <h3>Kota</h3>
                         </div>
                         <div id="kota1212" class="col-sm-5">
-                            <select class="form-select form-select-md mb-3" id="kota"  name="kota">
+                            <select class="form-select form-select-md mb-3" id="kota"  name="kota" required>
                                 <option value=""> Pilih Kota</option>
                             </select>
-
-
                             {{-- <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ $item->address }}" required> --}}
                         </div>
                     </div>
@@ -123,15 +120,15 @@
                         <h3>Alamat</h3>
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ Auth::user()->address }}">
+                            <input type="text" class="form-control text-center" name="address" placeholder="Alamat" value="{{ Auth::user()->address }}" required>
                         </div>
                     </div>
-                    <div class="row pb-2">
+                    <div class="row pb-2 pt-3">
                         <div class="col-sm">
                         <h3>Pengiriman</h3>
                         </div>
                         <div class="col-sm-5">
-                            <select class="form-select form-select-md mb-3" name="courier" id="courier" onchange="getBiayaPengiriman()" id="">
+                            <select class="form-select form-select-md mb-3" name="courier" id="courier" onchange="getBiayaPengiriman()" id="" required>
                                 <option value=""> Pilih Courier</option>
                                 <option value="tiki"> Pilih TIKI</option>
                                 <option value="jne"> Pilih JNE</option>
@@ -272,21 +269,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ url('frontend/libraries/xzoom/xzoom.min.js') }}"></script>
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     $('.xzoom, .xzoom-gallery').xzoom({
-      zoomWidth: 400,
-      title: false,
-      tint: '#333',
-      Xoffset: 15
+    zoomWidth: 400,
+    title: false,
+    tint: '#333',
+    Xoffset: 15
     });
 
     $('#currency-ongkir').hide()
-  });
+    document.getElementById('weight-input').innerHTML='<input type="number" id="weight" name="weight" value="'+ hasilWeight +'"  hidden>'
+});
 
-  $(window).scroll(function() {
+$(window).scroll(function() {
     var offset = $(window).scrollTop();
     $('.navbar').toggleClass('trans', offset < 50);
-  });
+});
+
 
     var defaultPrice = document.getElementById('defaultPrice');
     var price = document.getElementById('price');
@@ -304,7 +303,7 @@
 
         var price = document.getElementById('price');
         var tdweight = document.getElementById('td-weight');
-        console.log('Weight:', weight);
+        console.log('weight:', weight);
         var hasil = e * parseFloat(defaultPrice.value);
         var hasilWeight = defaultWeight * e;
 
@@ -317,20 +316,6 @@
         console.log(hasilWeight);
         updateTotal();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     function handleChangeType(){
@@ -407,8 +392,6 @@
         })
     }
 
-
-
     function updateTotal() {
         var expedition_price = parseFloat(expeditionPrice.value);
         var product_price = parseFloat(price.value);
@@ -424,3 +407,4 @@
 
 </script>
 @endpush
+

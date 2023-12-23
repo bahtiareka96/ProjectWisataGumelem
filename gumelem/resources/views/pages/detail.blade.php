@@ -45,7 +45,7 @@
                       </div>
                     </div>
                     <h2>Tentang Wisata</h2>
-                    <p>
+                    <p style="text-align: justify;">
                         {!! $item->about !!}
                     </p>
                   </div>
@@ -56,12 +56,8 @@
               <div class="card card-details card-right">
                 <h2>Trip Informations</h2>
                 <br>
-                <h3>Peta Lokasi</h3>
-                <div class="ratio ratio-16x9">
-                  <iframe src="{{ $item->location }}"></iframe>
-                </div>
                 <div class="join-container">
-                  <a href="{{ $item->location }}" target="_blank" class="btn btn-block btn-join-now mt-3 py-2"
+                  <a href="{{ $item->location }}" target="_blank" class="btn btn-block btn-join-now mt-3 mb-4 py-2"
                   >Menuju Lokasi
                   </a>
                 </div>

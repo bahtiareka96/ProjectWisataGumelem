@@ -58,7 +58,7 @@ ul.dropdown-menu {
 header {
   padding: 300px 0 300px;
   z-index: -1;
-  background-image: url("../images/Header.jpg");
+  background-image: url("../images/Head.jpg");
   background-size: cover;
 }
 header h1, header p {
@@ -126,7 +126,7 @@ header .btn-get-started:hover {
 }
 
 .section-morefromus-heading {
-  background-image: url("../images/Background.jpg");
+  background-image: url("../images/Foot.jpg");
   background-size: cover;
   padding-top: 100px;
   min-height: 700px;

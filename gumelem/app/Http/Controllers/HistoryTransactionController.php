@@ -24,33 +24,6 @@ class HistoryTransactionController extends Controller
 
     }
 
-    // public function order(Request $request,$id)
-    // {
-    //     dd($request);
-    //     $merchandise_order = MerchandiseOrder::findOrFail($id);
-
-    //     $merchandise_transaction = MerchandiseTransaction::findOrFail($id);
-
-    //     $transaction = MerchandiseTransaction::create([
-    //         'merchandise_orders_id' => $id,
-    //         'users_id' => Auth::user()->id,
-    //         'users_email' => Auth::user()->email,
-    //         'address' => $merchandise_transaction->address,
-    //         'expedition' => $merchandise_transaction->expedition,
-    //         'quantity_order' => $merchandise_transaction->quantity_order,
-    //         'expedition_price' => 5000,
-    //         'total_price' => $merchandise_order->price,
-    //         'status' => 'PENDING'
-    //     ]);
-
-
-
-    //     // $transaction->total_price += $transaction->merchandise_order->price;
-
-    //     return redirect()->route('detailmerch', $transaction->id);
-
-    // }
-
     public function process(Request $request, $id)
     {
         // dd($request->all());

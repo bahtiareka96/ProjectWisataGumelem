@@ -53,7 +53,7 @@
                     <div class="row g-2">
                         <div class="col-4 my-2">
                             <div class="image p-4 no-border text-center">
-                                <img src="{{ Storage::url($item->merchandise_order->first()->image) }}" height="70">
+                                <img src="{{ Storage::url($item->merchandise_order->first()->image) }}" height="60px">
                             </div>
                         </div>
                         <div class="col-4 my-auto">

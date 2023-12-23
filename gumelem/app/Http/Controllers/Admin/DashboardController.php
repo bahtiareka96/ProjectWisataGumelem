@@ -17,6 +17,7 @@ class DashboardController extends Controller
             'about_gumelem' => ObjekWisata::count(),
             'merchandise_order' => MerchandiseOrder::count(),
             'merchandise_pending' => MerchandiseTransaction::where('status', 'PENDING')->count(),
+            'merchandise_shipping' => MerchandiseTransaction::where('status', 'SHIPPING')->count(),
             'merchandise_success' => MerchandiseTransaction::where('status', 'SUCCESS')->count(),
             'merchandise_cancel' => MerchandiseTransaction::where('status', 'CANCEL')->count(),
             'merchandise_failed' => MerchandiseTransaction::where('status', 'FAILED')->count(),

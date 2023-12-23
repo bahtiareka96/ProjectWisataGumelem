@@ -74,7 +74,7 @@
       <div class="container">
         <div class="row page-login d-flex align-items-center">
           <div class="section-left col-12 col-md-6">
-            <h1 class="mb-4">We explore the new <br />life much better</h1>
+            <h1 class="mb-4">Wonderful Gumelem </h1>
             <img
               src="/frontend/images/login-images.png"
               alt=""

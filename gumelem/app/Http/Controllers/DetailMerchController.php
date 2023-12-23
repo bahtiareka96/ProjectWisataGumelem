@@ -13,6 +13,7 @@ use Validator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class DetailMerchController extends Controller
@@ -87,7 +88,7 @@ class DetailMerchController extends Controller
     {
         try {
             // Validasi data
-            $validator = Validator::make($request->all(), [
+            $validator = FacadesValidator::make($request->all(), [
                 'address' => 'required|string',
             ], [
                 // Pesan error validasi
@@ -109,13 +110,19 @@ class DetailMerchController extends Controller
                 'users_id' => Auth::user()->id,
                 'email' => $request->email,
                 'address' => $request->address,
-                'expedition' => $request->expedition,
+                'province_id' => $request->province,
+                'city_id' => $request->kota,
+                'expedition' => $request->courier,
                 'quantity_order' => $request->quantity_order,
                 'price' => $request->price,
                 'expedition_price' => $request->expedition_price,
                 'total_price' => $request->total_price,
+                'weight' => $request->weight,
                 'status' => 'PENDING'
             ]);
+
+
+
 
             // return response()->json([
             //     'success' => 'Pesanan berhasil diproses',
@@ -182,58 +189,6 @@ class DetailMerchController extends Controller
         }
     }
 
-
-    // public function process(Request $request, $id)
-    // {
-    //     // Mencari merchandise order berdasarkan ID
-    //     $merchandise_order = MerchandiseOrder::findOrFail($id);
-
-    //     // Membuat transaksi baru
-    //     $transaction = MerchandiseTransaction::create([
-    //         'merchandise_orders_id' => $id,
-    //         'users_id' => Auth::user()->id,
-    //         'email' => $request->email,
-    //         'address' => $request->address,
-    //         'expedition' => $request->expedition,
-    //         'quantity_order' => $request->quantity_order,
-    //         'price' => $request->price,
-    //         'expedition_price' => $request->expedition_price,
-    //         'total_price' => $request->total_price,
-    //         'status' => 'PENDING'
-    //     ]);
-
-    //     // Mengurangi jumlah stok merchandise
-    //     $merchandise_order->decrement('quantity', $transaction->quantity_order);
-
-    //     // Konfigurasi Midtrans
-    //     Config::$serverKey = config('midtrans.server_key');
-    //     Config::$isProduction = config('midtrans.is_production');
-    //     Config::$isSanitized = config('midtrans.sanitized');
-    //     Config::$is3ds = config('midtrans.3ds');
-
-    //     // Menyiapkan parameter transaksi untuk dikirim ke Midtrans
-    //     $params = [
-    //         'transaction_details' => [
-    //             'order_id' => $transaction->id,
-    //             'gross_amount' => $transaction->total_price,
-    //         ],
-    //         // Tambahkan parameter lainnya sesuai kebutuhan
-    //     ];
-
-    //     try {
-    //         // Mendapatkan snap token
-    //         $paymentUrl = Snap::createTransaction($params)->token;
-
-    //         return view('pages.detailmerch', [
-    //             'item' => $merchandise_order,
-    //             'snapToken' => $snapToken
-    //         ]);
-    //     } catch (Exception $e) {
-    //         // Handle error, misalnya tampilkan pesan error
-    //         return back()->withErrors(['message' => 'Error: ' . $e->getMessage()]);
-    //     }
-    // }
-
     public function midtransCallback(Request $request)
     {
         // Mendapatkan data dari request
@@ -270,7 +225,7 @@ class DetailMerchController extends Controller
         $transaction->status = $this->mapTransactionStatus($transaction_status);
         $transaction->save();
 
-        
+
 
         // Return response
         return response()->json(['message' => 'Callback processed successfully']);

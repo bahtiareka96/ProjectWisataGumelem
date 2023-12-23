@@ -32,6 +32,14 @@
         </div>
         <div class="col-xl-3 col-md-6 my-4">
             <div class="card bg-warning text-white align-items-center justify-content-center" style="background-color: gray">
+                <div class="card-body">Merchandise Order - Shipping</div>
+                <div class="card-body d-flex">
+                    <div class="h5 mb-2 font-weight-bold text-white-800">{{ $merchandise_shipping }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 my-4">
+            <div class="card bg-warning text-white align-items-center justify-content-center" style="background-color: gray">
                 <div class="card-body">Merchandise Order - Pending</div>
                 <div class="card-body d-flex">
                     <div class="h5 mb-2 font-weight-bold text-white-800">{{ $merchandise_pending }}</div>

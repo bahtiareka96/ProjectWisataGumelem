@@ -73,7 +73,7 @@ header {
      z-index: -1;
     //  object-fit: cover;
     //  position:absolute;
-     background-image: url('../images/Header.jpg');
+     background-image: url('../images/Head.jpg');
      background-size: cover;
 
      h1, p {
@@ -161,7 +161,7 @@ header {
 }
 
 .section-morefromus-heading {
-    background-image: url('../images/Background.jpg');
+    background-image: url('../images/Foot.jpg');
     background-size: cover;
     padding-top: 100px;
     min-height: 700px;
@@ -319,7 +319,10 @@ header {
 
 
 footer {
-    position: absolute;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
     display: block;
     width: 100%;
 
@@ -1005,10 +1008,6 @@ footer {
     }
 }
 
-//history page
-
-
-
 //login page
 .page-login {
      z-index: -1;
@@ -1125,6 +1124,8 @@ footer {
         }
     }
 }
+
+
 
 
 

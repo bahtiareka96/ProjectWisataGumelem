@@ -7,10 +7,10 @@
 @section('content')
    <!-- Main -->
 
-<div class="container">
+<div style="margin-top: 50px" class="container">
 
     @if ($errors->any())
-        <div class="alert alert-anger">
+        <div style="margin-bottom: -50px" class="alert alert-anger">
             <ul>
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ObjekWisataController;
 use App\Http\Controllers\Admin\AboutGalleryController;
 use App\Http\Controllers\HistoryTransactionController;
 use App\Http\Controllers\Admin\WisataGalleryController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\AuthController;
@@ -36,6 +37,10 @@ Route::post('/custom_login', [AuthController::class, 'login'])->name('custom_log
 
 Route::get('/', [HomeController::class, 'index']) -> name('home');
 
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+Route::post('/login', [LoginController::class, 'login']);
+
 Route::get('/detail/{slug}', [DetailController::class, 'index']) -> name('detail');
 
 Route::get('/order/{slug}', [OrderController::class, 'index']) -> name('order');
@@ -48,16 +53,6 @@ Route::get('/detailmerch/{id}', [DetailMerchController::class, 'index'])
     -> name('detailmerch')
     -> middleware(['auth', 'verified']);
 
-
-
-// Route::get('/detailmerch/confirm/{id}', [DetailMerchController::class, 'success'])
-//     -> name('detailmerch-success')
-//     -> middleware(['auth', 'verified']);
-
-// Route::get('/detailmerch/remove/{id}', [DetailMerchController::class, 'remove'])
-//     -> name('detailmerch-remove')
-//     -> middleware(['auth', 'verified']);
-
 Route::get('/about/{slug}', [AboutController::class, 'index']) -> name('about');
 
 Route::get('/history/{id}', [HistoryTransactionController::class, 'index']) -> name('history');
@@ -67,7 +62,9 @@ Route::get('/users/show/{id}', [UserController::class, 'show']);
 Route::put('/users/update/{id}', [UserController::class, 'update']) ;
 
 Route::get('/get-provinsi' ,[DetailMerchController::class, 'getProvince']);
+
 Route::get('/get-kota/{id}', [DetailMerchController::class, 'getKota'])->name('get-kota');
+
 Route::post('/get-biaya-pengiriman', [DetailMerchController::class, 'biayaPengiriman']);
 
 Route::resource('users', UserController::class)

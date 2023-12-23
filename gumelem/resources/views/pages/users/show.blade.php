@@ -7,7 +7,9 @@
 @section('content')
    <!-- Main -->
 <section class="section-details-header"></section>
-    <section class="section-details-content">
+    <section class="section-details-content" style="    margin-top: -210px;
+    min-height: 90vh;
+    margin-bottom: -150px;">
     <div class="container">
         <div class="row">
         <div class="col p-0 pl-3 pl-lg-0">
@@ -20,7 +22,7 @@
         </div>
         </div>
     </div>
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top: 50px">
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
           <div class="row g-0">
