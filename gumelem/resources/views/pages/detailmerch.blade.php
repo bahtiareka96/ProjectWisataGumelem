@@ -407,4 +407,3 @@ $(window).scroll(function() {
 
 </script>
 @endpush
-

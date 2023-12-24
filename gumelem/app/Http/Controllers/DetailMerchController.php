@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvoiceMail;
 use App\Models\MerchandiseTransaction;
 use App\Models\MerchandiseOrder;
 use App\Models\Invoice;
@@ -13,6 +14,7 @@ use Validator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
@@ -20,41 +22,43 @@ class DetailMerchController extends Controller
 {
     public function index($id)
     {
-        $item = MerchandiseOrder::with(['merchandise_galleries','user'])->findOrFail($id);
+        $item = MerchandiseOrder::with(['merchandise_galleries', 'user'])->findOrFail($id);
         $daftarProvinsi = RajaOngkir::provinsi()->all();
 
 
-        return view('pages.detailmerch',[
+        return view('pages.detailmerch', [
             'item' => $item,
             'daftarProvinsi' => $daftarProvinsi
         ]);
     }
 
-    public function getKota($id){
+    public function getKota($id)
+    {
         $listKota = RajaOngkir::kota()->dariProvinsi($id)->get();
 
         return $listKota;
     }
 
-    public function biayaPengiriman(Request $request){
+    public function biayaPengiriman(Request $request)
+    {
         // return $request->courier;
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
 
-        CURLOPT_POSTFIELDS => "origin=37&destination=$request->kota&weight=$request->weight&courier=$request->courier",
-        CURLOPT_HTTPHEADER => array(
-            "content-type: application/x-www-form-urlencoded",
-            "key:" . env('RAJAONGKIR_API_KEY')
-        ),
+            CURLOPT_POSTFIELDS => "origin=37&destination=$request->kota&weight=$request->weight&courier=$request->courier",
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded",
+                "key:" . env('RAJAONGKIR_API_KEY')
+            ),
         ));
 
         $response = curl_exec($curl);
@@ -129,6 +133,7 @@ class DetailMerchController extends Controller
             // ]);
 
             $invoice = new Invoice;
+            $invoice->user_id = Auth::user()->id;
             $invoice->merchandise_transaction_id = $transaction->id;
             $invoice->item_name = $merchandise_order->title; // Judul sebagai nama item
             $invoice->quantity = $request->quantity_order;
@@ -145,8 +150,24 @@ class DetailMerchController extends Controller
                     'gross_amount' => $transaction->total_price,
                 ];
 
+                $customerDetails = [
+                    'first_name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                ];
+
+                $item_details = [
+                    [
+                        'id' => $merchandise_order->id,
+                        'price' => $request->price, // harga per item
+                        'quantity' => $request->quantity_order, // kuantitas item
+                        'name' => $merchandise_order->title, // nama item
+                    ],
+                ];
+
                 $midtransPayload = [
                     'transaction_details' => $transactionDetails,
+                    'item_details' => $item_details,
+                    'customer_details' => $customerDetails,
                 ];
 
                 // Konfigurasi Midtrans
@@ -155,17 +176,14 @@ class DetailMerchController extends Controller
                 Config::$isSanitized = config('midtrans.sanitized');
                 Config::$is3ds = config('midtrans.3ds');
 
-                // Lakukan pemanggilan ke Midtrans dan dapatkan snap token.
                 try {
                     $snapResponse = Snap::createTransaction($midtransPayload);
                     $snapToken = $snapResponse->token;
-                    $transaction->snap_token = $snapToken; // Simpan snap token ke objek transaksi.
-                    $transaction->save(); // Jangan lupa untuk menyimpan objek transaksi setelah assignment.
+                    $transaction->snap_token = $snapToken;
+                    $transaction->save();
 
-                    $merchandise_order->decrement('quantity', $request->quantity_order); // Kurangi jumlah stok barang.
+                    $merchandise_order->decrement('quantity', $request->quantity_order);
                 } catch (\Throwable $e) {
-                    // Tangani exception yang mungkin terjadi.
-                    // Log error atau tangani sesuai kebutuhan.
                     return response()->json([
                         'galat' => 'Terjadi kesalahan saat memproses transaksi.',
                         'error_message' => $e->getMessage(),
@@ -191,47 +209,36 @@ class DetailMerchController extends Controller
 
     public function midtransCallback(Request $request)
     {
-        // Mendapatkan data dari request
         $data = $request->all();
 
-        // Contoh: Ambil order_id, status transaksi, dan data lainnya dari data request
-        $order_id = $data['order_id'] ?? null; // Gunakan null coalescing operator
+        $order_id = $data['order_id'] ?? null;
         $transaction_status = $data['transaction_status'] ?? null;
 
-        // // Contoh: Ambil informasi tambahan untuk invoice
-        // $item_name = $data['item_name'] ?? 'Default Item Name'; // Ganti 'Default Item Name' sesuai kebutuhan
-        // $quantity = $data['quantity'] ?? 0; // Gunakan default value jika key tidak ada
-        // $total_price = $data['total_price'] ?? 0;
-
-        // Ambil transaksi berdasarkan order_id
         $transaction = MerchandiseTransaction::where('id', $order_id)->first();
 
         if (!$transaction) {
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
-        // Membuat atau memperbarui invoice berdasarkan data transaksi
         $invoice = Invoice::updateOrCreate(
             ['merchandise_transaction_id' => $transaction->id],
             [
-                // 'item_name' => $item_name,
-                // 'quantity' => $quantity,
-                // 'total_price' => $total_price,
+
                 'status' => $this->mapTransactionStatus($transaction_status)
             ]
         );
 
-        // Simpan perubahan status transaksi
+        // email
+        $user = Auth::user(); 
+        Mail::to($user->email)->send(new InvoiceMail($invoice, $user));
+
         $transaction->status = $this->mapTransactionStatus($transaction_status);
         $transaction->save();
-
-
-
-        // Return response
         return response()->json(['message' => 'Callback processed successfully']);
     }
 
-    // Fungsi bantuan untuk memetakan status transaksi Midtrans ke status aplikasi Anda
+
+
     protected function mapTransactionStatus($status)
     {
         switch ($status) {

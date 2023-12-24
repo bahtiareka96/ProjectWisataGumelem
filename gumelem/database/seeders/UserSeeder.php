@@ -16,10 +16,9 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Testing',
             'username' => 'Testing',
-            'phone_number' => '081812813',
+            // 'phone_number' => '081812813',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
-            // Tambahkan kolom lain sesuai kebutuhan
         ]);
     }
 }

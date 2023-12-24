@@ -10,6 +10,11 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'merchandise_transaction_id', 'item_name', 'quantity', 'total_price', 'status'    
+        'merchandise_transaction_id', 'item_name', 'quantity', 'total_price', 'status', 'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
