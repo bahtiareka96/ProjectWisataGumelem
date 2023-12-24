@@ -14,6 +14,7 @@ use Validator;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
@@ -223,19 +224,25 @@ class DetailMerchController extends Controller
         $invoice = Invoice::updateOrCreate(
             ['merchandise_transaction_id' => $transaction->id],
             [
-
                 'status' => $this->mapTransactionStatus($transaction_status)
             ]
         );
 
-        // email
-        $user = Auth::user(); 
-        Mail::to($user->email)->send(new InvoiceMail($invoice, $user));
+        $userEmail = $transaction->user_email;
 
+        if (filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+            Mail::to($userEmail)->send(new InvoiceMail($invoice, $transaction));
+        } else {
+            Log::error("Invalid or missing email for the transaction {$transaction->id}");
+        }
+
+        // Update status transaksi
         $transaction->status = $this->mapTransactionStatus($transaction_status);
         $transaction->save();
+
         return response()->json(['message' => 'Callback processed successfully']);
     }
+
 
 
 
